@@ -1,0 +1,8 @@
+# A private repository is separate from an application submission to f-droid.org.
+# Run `fdroid init` in a NEW PRIVATE directory outside the web root, then adapt
+# its generated config.yml. Do not copy credentials from the old Git history.
+repo_url: https://YOUR_DOMAIN/fdroid/repo
+repo_name: jazz4all
+repo_description: Official jazz4all releases by Alexandre Campo
+archive_older: 3
+# Leave signing settings to `fdroid init`. Never commit config.yml or keys.

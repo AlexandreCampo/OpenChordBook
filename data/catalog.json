@@ -1,0 +1,782 @@
+{
+  "version": 1,
+  "updated": "2026-09-20",
+  "note": "Curated metadata and source links only; no chart data is bundled. Add fetches the selected playlist on demand, then asks for a destination before saving locally. Android can fetch source pages; the web can directly fetch entries with a download URL. For other web entries, open the source, download its .html export or copy its irealb:// link, then use Discover → Import playlist or Paste link.",
+  "categories": [
+    {
+      "id": "gypsy-jazz",
+      "name": "Gypsy Jazz",
+      "description": "Manouche / Django-style swing repertoire",
+      "items": [
+        {
+          "title": "The Transcribed Gypsy Jazz Chordbook (Martin Gioani)",
+          "url": "https://www.martingioani.com/transcribed-gypsy-jazz-chordbook",
+          "source": "martingioani.com",
+          "description": "The de facto manouche reference: 200+ tunes with chords transcribed from Django's actual recordings. Free PDF plus this iRealPro playlist.",
+          "songCount": 209,
+          "scrape": {
+            "url": "https://www.martingioani.com/docs/TGJC/V0/The_Transcribed_Gypsy_Jazz_Chordbook_V0.html",
+            "name": "Transcribed Gypsy Jazz Chordbook (V0)"
+          },
+          "id": "gypsy-jazz-the-transcribed-gypsy-jazz-chordbook-martin-gioani"
+        },
+        {
+          "title": "Gypsy Jazz (forum megathread playlist)",
+          "url": "https://forums.irealpro.com/threads/gypsy-jazz.215/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned gypsy-jazz thread; the compiled 313-tune playlist covers Django standards, manouche classics and jam favorites.",
+          "songCount": 313,
+          "scrape": {
+            "name": "Gypsy Jazz",
+            "url": "https://forums.irealpro.com/threads/gypsy-jazz.215/"
+          },
+          "id": "gypsy-jazz-gypsy-jazz-forum-megathread-playlist"
+        },
+        {
+          "title": "Robin Nolan-style Gypsy Jazz",
+          "url": "https://forums.irealpro.com/threads/gypsy-jazz.215/post-33160",
+          "source": "forums.irealpro.com",
+          "description": "Community collection of 63 Robin Nolan-style chord charts. Tune titles are marked “rn” to distinguish these versions.",
+          "songCount": 63,
+          "scrape": {
+            "name": "RN style GJ charts",
+            "url": "https://forums.irealpro.com/threads/gypsy-jazz.215/post-33160"
+          },
+          "id": "gypsy-jazz-robin-nolan-style-gypsy-jazz"
+        },
+        {
+          "title": "TGJC release thread (DjangoBooks)",
+          "url": "https://www.djangobooks.com/forum/discussion/18512/the-transcribed-gypsy-jazz-chordbook-is-out",
+          "source": "djangobooks.com",
+          "description": "DjangoBooks release thread for the TGJC; links through to the PDF and iRealPro playlist.",
+          "id": "gypsy-jazz-tgjc-release-thread-djangobooks"
+        },
+        {
+          "title": "Denis Chang — Fakebook",
+          "url": "https://www.dropbox.com/scl/fo/9sjagiffc1xrwenuidtpc/AOBI8zyHOPLqdRH3ASILTrI/Denis%20Chang%20%20Fakebook.html?rlkey=kgchqoe65zyv9ukkhay68oaf9&dl=0",
+          "source": "Denis Chang · Dropbox",
+          "description": "Chang’s suggested changes for standards, including common jam variations.",
+          "songCount": 239,
+          "download": "https://dl.dropboxusercontent.com/scl/fo/9sjagiffc1xrwenuidtpc/AOBI8zyHOPLqdRH3ASILTrI/Denis%20Chang%20%20Fakebook.html?rlkey=kgchqoe65zyv9ukkhay68oaf9&dl=1",
+          "scrape": {
+            "url": "https://dl.dropboxusercontent.com/scl/fo/9sjagiffc1xrwenuidtpc/AOBI8zyHOPLqdRH3ASILTrI/Denis%20Chang%20%20Fakebook.html?rlkey=kgchqoe65zyv9ukkhay68oaf9&dl=1",
+            "name": "Denis Chang  Fakebook"
+          },
+          "id": "gypsy-jazz-denis-chang-fakebook"
+        },
+        {
+          "title": "Denis Chang — Early Recordings",
+          "url": "https://www.dropbox.com/scl/fo/9sjagiffc1xrwenuidtpc/ANaIl1qWqjRkOKzy24DGvGY/Denis%20Chang%20Early%20Recordings%20Book.html?rlkey=kgchqoe65zyv9ukkhay68oaf9&dl=0",
+          "source": "Denis Chang · Dropbox",
+          "description": "Changes from early recordings of standards. Includes an unfinished chart from the original export.",
+          "songCount": 72,
+          "download": "https://dl.dropboxusercontent.com/scl/fo/9sjagiffc1xrwenuidtpc/ANaIl1qWqjRkOKzy24DGvGY/Denis%20Chang%20Early%20Recordings%20Book.html?rlkey=kgchqoe65zyv9ukkhay68oaf9&dl=1",
+          "scrape": {
+            "url": "https://dl.dropboxusercontent.com/scl/fo/9sjagiffc1xrwenuidtpc/ANaIl1qWqjRkOKzy24DGvGY/Denis%20Chang%20Early%20Recordings%20Book.html?rlkey=kgchqoe65zyv9ukkhay68oaf9&dl=1",
+            "name": "Denis Chang Early Recordings Book"
+          },
+          "id": "gypsy-jazz-denis-chang-early-recordings"
+        },
+        {
+          "title": "iRealPro Chordbooks (Django Jazz Calgary)",
+          "url": "https://djangojazzcalgary.wordpress.com/irealpro-chordbooks/",
+          "source": "djangojazzcalgary.wordpress.com",
+          "description": "Curated landing page linking the three main gypsy-jazz iRealPro chordbooks (Gioani, Chang, official forum) in one place.",
+          "id": "gypsy-jazz-irealpro-chordbooks-django-jazz-calgary"
+        },
+        {
+          "title": "TGJC update / suggestions thread",
+          "url": "https://www.djangobooks.com/forum/discussion/18965/tgjc-on-irealpro-update-coming-soon-asking-for-suggestions",
+          "source": "djangobooks.com",
+          "description": "Community discussion gathering suggestions for TGJC updates. Downloads live on the Gioani site.",
+          "id": "gypsy-jazz-tgjc-update-suggestions-thread"
+        },
+        {
+          "title": "Gypsy Jazz Fakebook Project",
+          "url": "https://www.djangobooks.com/forum/discussion/21732/gypsy-jazz-fakebook-project",
+          "source": "djangobooks.com",
+          "description": "In-progress 150-200 tune Django fakebook with planned iRealPro accompaniment. Watch for release.",
+          "id": "gypsy-jazz-gypsy-jazz-fakebook-project"
+        }
+      ]
+    },
+    {
+      "id": "jazz-standards",
+      "name": "Jazz Standards",
+      "description": "The big compiled lists and Real Book volumes",
+      "items": [
+        {
+          "title": "Jazz 1460 Standards",
+          "url": "https://forums.irealpro.com/threads/jazz-1460-standards.12753/",
+          "source": "forums.irealpro.com",
+          "description": "The big one. Successor to the legendary Jazz 1300/1410 lists — 1460 alphabetical jazz standards as a single playlist.",
+          "songCount": 1460,
+          "scrape": {
+            "name": "Jazz 1460",
+            "url": "https://forums.irealpro.com/threads/jazz-1460-standards.12753/"
+          },
+          "id": "jazz-standards-jazz-1460-standards"
+        },
+        {
+          "title": "Real Book I list",
+          "url": "https://forums.irealpro.com/threads/real-book-i-list.4528/",
+          "source": "forums.irealpro.com",
+          "description": "iRealPro versions of Real Book Vol. 1 standards. Largely overlapping with Jazz 1460 (charts differ slightly).",
+          "songCount": 284,
+          "scrape": {
+            "name": "Real Book I",
+            "url": "https://forums.irealpro.com/threads/real-book-i-list.4528/"
+          },
+          "id": "jazz-standards-real-book-i-list"
+        },
+        {
+          "title": "Real Book II list",
+          "url": "https://forums.irealpro.com/threads/real-book-ii-list.10489/",
+          "source": "forums.irealpro.com",
+          "description": "Real Book Vol. 2 standards as an importable iRealPro playlist.",
+          "songCount": 418,
+          "scrape": {
+            "name": "Real Book II",
+            "url": "https://forums.irealpro.com/threads/real-book-ii-list.10489/"
+          },
+          "id": "jazz-standards-real-book-ii-list"
+        },
+        {
+          "title": "Real Book III list",
+          "url": "https://forums.irealpro.com/threads/real-book-iii-list.10544/",
+          "source": "forums.irealpro.com",
+          "description": "Real Book Vol. 3 standards. Significant overlap with Jazz 1460.",
+          "songCount": 291,
+          "scrape": {
+            "name": null,
+            "url": "https://forums.irealpro.com/threads/real-book-iii-list.10544/"
+          },
+          "id": "jazz-standards-real-book-iii-list"
+        },
+        {
+          "title": "Jazz24's Jazz 100",
+          "url": "https://forums.irealpro.com/threads/jazz24s-the-jazz-100-list.10230/",
+          "source": "forums.irealpro.com",
+          "description": "Listener-voted top jazz recordings from Jazz24.org rendered as iRealPro charts (79 of 100 available).",
+          "songCount": 79,
+          "scrape": {
+            "name": "Jazz24 top 100",
+            "url": "https://forums.irealpro.com/threads/jazz24s-the-jazz-100-list.10230/"
+          },
+          "id": "jazz-standards-jazz24-s-jazz-100"
+        },
+        {
+          "title": "Jazz 1460 Standards — individual songs",
+          "url": "https://forums.irealpro.com/threads/jazz-1460-standards-individual-songs.27435/",
+          "source": "forums.irealpro.com",
+          "description": "Same corpus broken out as individual irealb:// links for picking single tunes instead of the full playlist.",
+          "scrape": {
+            "name": "Jazz 1460",
+            "url": "https://forums.irealpro.com/threads/jazz-1460-standards-individual-songs.27435/"
+          },
+          "id": "jazz-standards-jazz-1460-standards-individual-songs"
+        },
+        {
+          "title": "The Great Gig Book (Blue Book) discussion",
+          "url": "https://forums.irealpro.com/threads/the-great-gig-book-blue-book.13431/",
+          "source": "forums.irealpro.com",
+          "description": "Long thread on an iRealPro version of the Blue Book. No single combined playlist — useful as an index of which GAS tunes have been transcribed.",
+          "id": "jazz-standards-the-great-gig-book-blue-book-discussion"
+        }
+      ]
+    },
+    {
+      "id": "bebop",
+      "name": "Bebop",
+      "description": "Charlie Parker, Dizzy Gillespie and the bebop canon",
+      "items": [
+        {
+          "title": "Charlie Parker songs",
+          "url": "https://forums.irealpro.com/threads/charlie-parker-songs.14758/",
+          "source": "forums.irealpro.com",
+          "description": "Compiled Parker compositions (Anthropology, Au Privave, Confirmation, Donna Lee, etc.) in original keys.",
+          "songCount": 37,
+          "scrape": {
+            "name": "Charlie Parker",
+            "url": "https://forums.irealpro.com/threads/charlie-parker-songs.14758/"
+          },
+          "id": "bebop-charlie-parker-songs"
+        },
+        {
+          "title": "Parker Omnibook (concert key)",
+          "url": "https://forums.irealpro.com/threads/charlie-parker-songs.14758/",
+          "source": "forums.irealpro.com",
+          "description": "The Omnibook corpus in concert key — 57 tunes from the same thread.",
+          "songCount": 57,
+          "scrape": {
+            "name": "Parker Omnibook Concert",
+            "url": "https://forums.irealpro.com/threads/charlie-parker-songs.14758/"
+          },
+          "id": "bebop-parker-omnibook-concert-key"
+        }
+      ]
+    },
+    {
+      "id": "hard-bop",
+      "name": "Hard Bop / Post-Bop",
+      "description": "Blue Note era and modern composers",
+      "items": [
+        {
+          "title": "Contemporary Jazz 25",
+          "url": "https://forums.irealpro.com/threads/contemporary-jazz.204/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned post-bop / contemporary collection featuring Metheny, Rosenwinkel, Hancock and other modern composers.",
+          "songCount": 25,
+          "scrape": {
+            "name": "Contemporary Jazz 25",
+            "url": "https://forums.irealpro.com/threads/contemporary-jazz.204/"
+          },
+          "id": "hard-bop-contemporary-jazz-25"
+        },
+        {
+          "title": "Jazz Practice Exercises",
+          "url": "https://forums.irealpro.com/threads/jazz-practice-exercises.992/",
+          "source": "forums.irealpro.com",
+          "description": "Long-running pinned thread of ii-V-I, modal and 12-key drills. Individual links only — browse the thread.",
+          "id": "hard-bop-jazz-practice-exercises"
+        }
+      ]
+    },
+    {
+      "id": "bossa",
+      "name": "Bossa Nova / Brazilian",
+      "description": "Jobim, samba, choro, MPB, pagode",
+      "items": [
+        {
+          "title": "Brazilian 220",
+          "url": "https://forums.irealpro.com/threads/brazilian-220.4414/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned 220-tune Brazilian collection spanning bossa, samba and MPB. One of the forum's most-viewed Brazilian playlists.",
+          "songCount": 220,
+          "scrape": {
+            "name": "Brazilian 220",
+            "url": "https://forums.irealpro.com/threads/brazilian-220.4414/"
+          },
+          "id": "bossa-brazilian-220"
+        },
+        {
+          "title": "Bossa Nova (Giulio's list)",
+          "url": "https://forums.irealpro.com/threads/bossanova-giulio-list.9569/",
+          "source": "forums.irealpro.com",
+          "description": "Curated bossa-nova playlist heavy on Jobim (Garota de Ipanema, Desafinado, Corcovado, Aguas de Marco) plus Bonfa and Veloso.",
+          "songCount": 25,
+          "scrape": {
+            "name": "Disco Bossa",
+            "url": "https://forums.irealpro.com/threads/bossanova-giulio-list.9569/"
+          },
+          "id": "bossa-bossa-nova-giulio-s-list"
+        },
+        {
+          "title": "Choro — O Melhor do Choro Brasileiro Vol. I",
+          "url": "https://forums.irealpro.com/threads/choro-brasil.919/",
+          "source": "forums.irealpro.com",
+          "description": "130-tune choro compilation from the long-running choro thread.",
+          "songCount": 130,
+          "scrape": {
+            "name": "O Melhor Do Choro Brasileiro Vol. I",
+            "url": "https://forums.irealpro.com/threads/choro-brasil.919/"
+          },
+          "id": "bossa-choro-o-melhor-do-choro-brasileiro-vol-i"
+        },
+        {
+          "title": "15 Choros de Garoto",
+          "url": "https://forums.irealpro.com/threads/choro-brasil.919/",
+          "source": "forums.irealpro.com",
+          "description": "Garoto transcriptions from the same choro thread.",
+          "songCount": 15,
+          "scrape": {
+            "name": "15 Choros de Garoto",
+            "url": "https://forums.irealpro.com/threads/choro-brasil.919/"
+          },
+          "id": "bossa-15-choros-de-garoto"
+        },
+        {
+          "title": "Samba e Pagode 460",
+          "url": "https://forums.irealpro.com/threads/samba-e-pagode-460-list.26690/",
+          "source": "forums.irealpro.com",
+          "description": "Decade-long ear-transcribed samba and pagode collection (463 tunes).",
+          "songCount": 463,
+          "scrape": {
+            "name": null,
+            "url": "https://forums.irealpro.com/threads/samba-e-pagode-460-list.26690/"
+          },
+          "id": "bossa-samba-e-pagode-460"
+        },
+        {
+          "title": "Samba de Roda",
+          "url": "https://forums.irealpro.com/threads/samba-de-roda-list.11680/",
+          "source": "forums.irealpro.com",
+          "description": "Traditional samba-de-roda repertoire as an alphabetical iRealPro playlist (295 tunes).",
+          "songCount": 295,
+          "scrape": {
+            "name": null,
+            "url": "https://forums.irealpro.com/threads/samba-de-roda-list.11680/"
+          },
+          "id": "bossa-samba-de-roda"
+        }
+      ]
+    },
+    {
+      "id": "latin",
+      "name": "Latin Jazz",
+      "description": "Salsa, bolero, son, cha-cha, rumba",
+      "items": [
+        {
+          "title": "Latin 50",
+          "url": "https://forums.irealpro.com/threads/latin-50.8482/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned 50-song Latin compilation spanning bolero, son, cha-cha, salsa and tango.",
+          "songCount": 50,
+          "scrape": {
+            "name": "Latin 50",
+            "url": "https://forums.irealpro.com/threads/latin-50.8482/"
+          },
+          "id": "latin-latin-50"
+        },
+        {
+          "title": "Gipsy Kings",
+          "url": "https://forums.irealpro.com/threads/gipsy-kings-songs.6716/",
+          "source": "forums.irealpro.com",
+          "description": "Rumba flamenca hits — Djobi Djoba, Baila Me, Volare and friends.",
+          "songCount": 14,
+          "scrape": {
+            "name": "Gipsy Kings",
+            "url": "https://forums.irealpro.com/threads/gipsy-kings-songs.6716/"
+          },
+          "id": "latin-gipsy-kings"
+        },
+        {
+          "title": "Rock en Espanol",
+          "url": "https://forums.irealpro.com/threads/rock-en-espanol-spanish-rock-songs.11968/",
+          "source": "forums.irealpro.com",
+          "description": "Spanish-language rock and pop transcriptions from the forum thread.",
+          "songCount": 21,
+          "scrape": {
+            "name": "Spanish songs",
+            "url": "https://forums.irealpro.com/threads/rock-en-espanol-spanish-rock-songs.11968/"
+          },
+          "id": "latin-rock-en-espanol"
+        }
+      ]
+    },
+    {
+      "id": "blues",
+      "name": "Blues",
+      "description": "12-bar variations and blues standards",
+      "items": [
+        {
+          "title": "Blues 50",
+          "url": "https://forums.irealpro.com/threads/blues-50.4782/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned blues collection covering Muddy Waters, Howlin' Wolf, B.B. King and Robert Johnson across slow blues, shuffles and rock blues.",
+          "songCount": 54,
+          "scrape": {
+            "name": "Blues 50",
+            "url": "https://forums.irealpro.com/threads/blues-50.4782/"
+          },
+          "id": "blues-blues-50"
+        }
+      ]
+    },
+    {
+      "id": "pop-rock",
+      "name": "Pop & Rock",
+      "description": "Pop, rock and soul repertoire",
+      "items": [
+        {
+          "title": "Pop 400",
+          "url": "https://forums.irealpro.com/threads/pop-400.8483/",
+          "source": "forums.irealpro.com",
+          "description": "The pop counterpart to Jazz 1460 — 400+ pop and rock standards in one playlist.",
+          "songCount": 403,
+          "scrape": {
+            "name": "Pop 400",
+            "url": "https://forums.irealpro.com/threads/pop-400.8483/"
+          },
+          "id": "pop-rock-pop-400"
+        },
+        {
+          "title": "The Beatles",
+          "url": "https://forums.irealpro.com/threads/the-beatles.1188/",
+          "source": "forums.irealpro.com",
+          "description": "71 Beatles tunes compiled from the long-running thread.",
+          "songCount": 71,
+          "scrape": {
+            "name": "The Beatles",
+            "url": "https://forums.irealpro.com/threads/the-beatles.1188/"
+          },
+          "id": "pop-rock-the-beatles"
+        },
+        {
+          "title": "Stevie Wonder",
+          "url": "https://forums.irealpro.com/threads/stevie-wonder-songs.1262/",
+          "source": "forums.irealpro.com",
+          "description": "30 Stevie Wonder classics in one playlist.",
+          "songCount": 30,
+          "scrape": {
+            "name": "Stevie Wonder 30",
+            "url": "https://forums.irealpro.com/threads/stevie-wonder-songs.1262/"
+          },
+          "id": "pop-rock-stevie-wonder"
+        },
+        {
+          "title": "Pink Floyd",
+          "url": "https://forums.irealpro.com/threads/pink-floyd-songs.7484/",
+          "source": "forums.irealpro.com",
+          "description": "60 Pink Floyd tunes from the fan-compiled thread.",
+          "songCount": 60,
+          "scrape": {
+            "name": "Pink Floyd",
+            "url": "https://forums.irealpro.com/threads/pink-floyd-songs.7484/"
+          },
+          "id": "pop-rock-pink-floyd"
+        },
+        {
+          "title": "Earth, Wind & Fire",
+          "url": "https://forums.irealpro.com/threads/earth-wind-fire-songs.15058/",
+          "source": "forums.irealpro.com",
+          "description": "20 EWF grooves merged from the individual links in the thread.",
+          "songCount": 20,
+          "id": "pop-rock-earth-wind-fire"
+        }
+      ]
+    },
+    {
+      "id": "country-folk",
+      "name": "Country, Folk & Bluegrass",
+      "description": "Country, western swing, bluegrass and singer-songwriters",
+      "items": [
+        {
+          "title": "Bluegrass 300",
+          "url": "https://forums.irealpro.com/threads/bluegrass-300.2486/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned 300-tune bluegrass compilation.",
+          "songCount": 300,
+          "scrape": {
+            "name": "Bluegrass 300",
+            "url": "https://forums.irealpro.com/threads/bluegrass-300.2486/"
+          },
+          "id": "country-folk-bluegrass-300"
+        },
+        {
+          "title": "The Real Bluegrass Book (Hal Leonard)",
+          "url": "https://forums.irealpro.com/threads/the-real-bluegrass-book-hal-leonard.27965/",
+          "source": "forums.irealpro.com",
+          "description": "Community iRealPro transcription of the published Real Bluegrass Book — 305 tunes.",
+          "songCount": 305,
+          "scrape": {
+            "name": "The Real Bluegrass Book",
+            "url": "https://forums.irealpro.com/threads/the-real-bluegrass-book-hal-leonard.27965/"
+          },
+          "id": "country-folk-the-real-bluegrass-book-hal-leonard"
+        },
+        {
+          "title": "Parking Lot Pickers Songbook (216 songs)",
+          "url": "https://forums.irealpro.com/threads/parking-lot-pickers-songbook-216-songs.12514/",
+          "source": "forums.irealpro.com",
+          "description": "The Parking Lot Pickers Songbook rendered as an iRealPro playlist.",
+          "songCount": 216,
+          "scrape": {
+            "name": "PARKING LOT PICKERS",
+            "url": "https://forums.irealpro.com/threads/parking-lot-pickers-songbook-216-songs.12514/"
+          },
+          "id": "country-folk-parking-lot-pickers-songbook-216-songs"
+        },
+        {
+          "title": "Petimar Fiddle Tunes",
+          "url": "https://forums.irealpro.com/threads/petimar-bluegrass-and-fiddle-lists.5263/",
+          "source": "forums.irealpro.com",
+          "description": "196 fiddle and bluegrass tunes from Petimar's lists.",
+          "songCount": 196,
+          "scrape": {
+            "name": "Fiddle",
+            "url": "https://forums.irealpro.com/threads/petimar-bluegrass-and-fiddle-lists.5263/"
+          },
+          "id": "country-folk-petimar-fiddle-tunes"
+        },
+        {
+          "title": "Country 50",
+          "url": "https://forums.irealpro.com/threads/country-50.6102/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned 50-song country compilation.",
+          "songCount": 50,
+          "scrape": {
+            "name": "Country 50",
+            "url": "https://forums.irealpro.com/threads/country-50.6102/"
+          },
+          "id": "country-folk-country-50"
+        },
+        {
+          "title": "Western Swing",
+          "url": "https://forums.irealpro.com/threads/western-swing-songs.534/",
+          "source": "forums.irealpro.com",
+          "description": "79 western-swing and Texas swing tunes.",
+          "songCount": 79,
+          "scrape": {
+            "name": "Western Swing",
+            "url": "https://forums.irealpro.com/threads/western-swing-songs.534/"
+          },
+          "id": "country-folk-western-swing"
+        },
+        {
+          "title": "Johnny Cash",
+          "url": "https://forums.irealpro.com/threads/johnny-cash-songs.24481/",
+          "source": "forums.irealpro.com",
+          "description": "36 Johnny Cash songs compiled from the thread.",
+          "songCount": 36,
+          "scrape": {
+            "name": "Johnny Cash 9-18-21",
+            "url": "https://forums.irealpro.com/threads/johnny-cash-songs.24481/"
+          },
+          "id": "country-folk-johnny-cash"
+        },
+        {
+          "title": "Bob Dylan",
+          "url": "https://forums.irealpro.com/threads/bob-dylan-songs.24482/",
+          "source": "forums.irealpro.com",
+          "description": "23 Dylan classics from the thread.",
+          "songCount": 23,
+          "scrape": {
+            "name": "Dylan, Bob",
+            "url": "https://forums.irealpro.com/threads/bob-dylan-songs.24482/"
+          },
+          "id": "country-folk-bob-dylan"
+        },
+        {
+          "title": "Steel Guitar C6 Practice List",
+          "url": "https://forums.irealpro.com/threads/steel-guitar-practice-list.4301/",
+          "source": "forums.irealpro.com",
+          "description": "21 tunes for C6 lap steel practice.",
+          "songCount": 21,
+          "scrape": {
+            "name": "Steel Guitar C6",
+            "url": "https://forums.irealpro.com/threads/steel-guitar-practice-list.4301/"
+          },
+          "id": "country-folk-steel-guitar-c6-practice-list"
+        }
+      ]
+    },
+    {
+      "id": "films-musicals-classical",
+      "name": "Film, Musicals & Classical",
+      "description": "Movie themes, show tunes and classical pieces",
+      "items": [
+        {
+          "title": "Film Music 40",
+          "url": "https://forums.irealpro.com/threads/film-music.8481/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned collection of movie themes and film music.",
+          "songCount": 40,
+          "scrape": {
+            "name": "Film Music 40",
+            "url": "https://forums.irealpro.com/threads/film-music.8481/"
+          },
+          "id": "films-musicals-classical-film-music-40"
+        },
+        {
+          "title": "Musicals",
+          "url": "https://forums.irealpro.com/threads/musical.9482/",
+          "source": "forums.irealpro.com",
+          "description": "32 show tunes from the musicals thread.",
+          "songCount": 32,
+          "scrape": {
+            "name": "Musicals",
+            "url": "https://forums.irealpro.com/threads/musical.9482/"
+          },
+          "id": "films-musicals-classical-musicals"
+        },
+        {
+          "title": "Classical 20",
+          "url": "https://forums.irealpro.com/threads/classical.1362/",
+          "source": "forums.irealpro.com",
+          "description": "Short classical set from the pinned classical thread.",
+          "songCount": 20,
+          "scrape": {
+            "name": "Classical 20",
+            "url": "https://forums.irealpro.com/threads/classical.1362/"
+          },
+          "id": "films-musicals-classical-classical-20"
+        }
+      ]
+    },
+    {
+      "id": "world",
+      "name": "World Music",
+      "description": "French, Chinese, Turkish, Irish and more",
+      "items": [
+        {
+          "title": "Chansons Francaises",
+          "url": "https://forums.irealpro.com/threads/chansons-francaises-french-songs.13679/",
+          "source": "forums.irealpro.com",
+          "description": "109 French chansons — Brel, Brassens, Gainsbourg and more.",
+          "songCount": 109,
+          "scrape": {
+            "name": "Chansons FR",
+            "url": "https://forums.irealpro.com/threads/chansons-francaises-french-songs.13679/"
+          },
+          "id": "world-chansons-francaises"
+        },
+        {
+          "title": "Chinese Songs",
+          "url": "https://forums.irealpro.com/threads/chinese-songs.6384/",
+          "source": "forums.irealpro.com",
+          "description": "176 Chinese pop and folk transcriptions.",
+          "songCount": 176,
+          "scrape": {
+            "name": "Chinese Songs",
+            "url": "https://forums.irealpro.com/threads/chinese-songs.6384/"
+          },
+          "id": "world-chinese-songs"
+        },
+        {
+          "title": "Turkce 300",
+          "url": "https://forums.irealpro.com/threads/turkce-300-329-updated-5-13-16.11877/",
+          "source": "forums.irealpro.com",
+          "description": "329 Turkish pop and folk songs.",
+          "songCount": 329,
+          "scrape": {
+            "name": "Türkçe 300",
+            "url": "https://forums.irealpro.com/threads/turkce-300-329-updated-5-13-16.11877/"
+          },
+          "id": "world-turkce-300"
+        },
+        {
+          "title": "Irish Songs",
+          "url": "https://forums.irealpro.com/threads/irish-songs.14841/",
+          "source": "forums.irealpro.com",
+          "description": "14 Irish traditional tunes from the thread.",
+          "songCount": 14,
+          "scrape": {
+            "name": "Irish",
+            "url": "https://forums.irealpro.com/threads/irish-songs.14841/"
+          },
+          "id": "world-irish-songs"
+        }
+      ]
+    },
+    {
+      "id": "worship",
+      "name": "Worship",
+      "description": "Contemporary worship and praise charts",
+      "items": [
+        {
+          "title": "Worship 85",
+          "url": "https://forums.irealpro.com/threads/worship-songs.673/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned 85-song contemporary worship playlist.",
+          "songCount": 85,
+          "scrape": {
+            "name": "Worship 85",
+            "url": "https://forums.irealpro.com/threads/worship-songs.673/"
+          },
+          "id": "worship-worship-85"
+        },
+        {
+          "title": "Spanish Worship Charts",
+          "url": "https://forums.irealpro.com/threads/worship-songs.673/",
+          "source": "forums.irealpro.com",
+          "description": "150 Spanish-language worship charts from the same thread.",
+          "songCount": 150,
+          "scrape": {
+            "name": "Spanish Worship Charts",
+            "url": "https://forums.irealpro.com/threads/worship-songs.673/"
+          },
+          "id": "worship-spanish-worship-charts"
+        }
+      ]
+    },
+    {
+      "id": "ukulele-beginners",
+      "name": "Ukulele & Beginners",
+      "description": "Ukulele songbooks and easy arrangements for students and teachers",
+      "items": [
+        {
+          "title": "Daily Ukulele (Leap Year edition)",
+          "url": "https://forums.irealpro.com/threads/daily-ukulele-liz-and-jim-beloff-books.25195/",
+          "source": "forums.irealpro.com",
+          "description": "366 tunes from Liz and Jim Beloff's Daily Ukulele books.",
+          "songCount": 366,
+          "scrape": {
+            "name": "Daily Uke Leap Year",
+            "url": "https://forums.irealpro.com/threads/daily-ukulele-liz-and-jim-beloff-books.25195/"
+          },
+          "id": "ukulele-beginners-daily-ukulele-leap-year-edition"
+        },
+        {
+          "title": "Easy Songs for Students, Teachers and Beginners",
+          "url": "https://forums.irealpro.com/threads/easy-songs-with-instructions-for-students-teachers-and-beginners.12189/",
+          "source": "forums.irealpro.com",
+          "description": "506 easy arrangements with playing instructions — a huge teaching resource.",
+          "songCount": 506,
+          "scrape": {
+            "name": "Easy Songs for Students, Teachers, and Beginners",
+            "url": "https://forums.irealpro.com/threads/easy-songs-with-instructions-for-students-teachers-and-beginners.12189/"
+          },
+          "id": "ukulele-beginners-easy-songs-for-students-teachers-and-beginners"
+        }
+      ]
+    },
+    {
+      "id": "fusion",
+      "name": "Fusion / Smooth Jazz",
+      "description": "Fusion and smooth jazz repertoire",
+      "items": [
+        {
+          "title": "Fusion and Smooth Jazz",
+          "url": "https://forums.irealpro.com/threads/fusion-and-smooth-jazz.210/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned fusion/smooth playlist with Grover Washington, Fourplay, Larry Carlton and contributed Scofield charts.",
+          "songCount": 34,
+          "scrape": {
+            "name": "Fusion and Smooth Jazz",
+            "url": "https://forums.irealpro.com/threads/fusion-and-smooth-jazz.210/"
+          },
+          "id": "fusion-fusion-and-smooth-jazz"
+        }
+      ]
+    },
+    {
+      "id": "dixieland",
+      "name": "Dixieland / Trad",
+      "description": "Early jazz and traditional standards",
+      "items": [
+        {
+          "title": "Dixieland / Trad Tunes",
+          "url": "https://forums.irealpro.com/threads/dixieland-trad-playlists.10591/",
+          "source": "forums.irealpro.com",
+          "description": "Pinned trad/Dixieland collection of early-twentieth-century jazz tunes (403 charts).",
+          "songCount": 403,
+          "scrape": {
+            "name": "Dixieland  -Trad Tunes",
+            "url": "https://forums.irealpro.com/threads/dixieland-trad-playlists.10591/"
+          },
+          "id": "dixieland-dixieland-trad-tunes"
+        }
+      ]
+    },
+    {
+      "id": "holiday",
+      "name": "Christmas / Holiday",
+      "description": "Jazz arrangements of holiday repertoire",
+      "items": [
+        {
+          "title": "Holiday 100",
+          "url": "https://forums.irealpro.com/threads/holiday.5105/",
+          "source": "forums.irealpro.com",
+          "description": "Holiday jazz collection featuring jazz arrangements of Christmas standards.",
+          "songCount": 100,
+          "scrape": {
+            "name": "Holiday 100",
+            "url": "https://forums.irealpro.com/threads/holiday.5105/"
+          },
+          "id": "holiday-holiday-100"
+        }
+      ]
+    }
+  ]
+}

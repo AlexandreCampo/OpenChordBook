@@ -1,0 +1,17 @@
+An open chord book for your music stand.
+
+jazz4all reads and edits chord charts, with a full-screen sheet that leaves room for the music. Your library stays on your device. No account, ads, analytics or playback.
+
+• Read charts offline and transpose without hiding the chords
+• Write charts using ordinary chord names, with a live preview
+• Use named sections, repeat bars and different time signatures
+• Organize tunes in nested folders and choose a destination before importing
+• Import iReal Pro HTML playlists or paste playlist links
+• Export charts, selected tunes or a full folder to a playlist file
+• Search your library and group different versions of the same tune
+• Adjust chart size and switch between day and night themes
+• Optionally download community playlists from Discover
+
+Tunes are not packaged with the app; they are downloaded by the user. You do not need the iReal Pro app. Your library stays on your device, and you can export your tunes to keep a copy.
+
+Free software under GNU GPL version 3 or later. Copyright © 2026 Alexandre Campo. Independent of Technimo LLC and iReal Pro.

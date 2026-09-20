@@ -1,0 +1,82 @@
+/* Copyright (C) 2026 Alexandre Campo; SPDX-License-Identifier: GPL-3.0-or-later */
+/* A writing surface beside its printed result. On phones each gets the full
+   width; switching to Preview does not lose the text or insertion point. */
+.tune-edit { align-self: center; width: 40px; color: var(--muted); }
+.tune-edit svg { width: 17px; }
+#chart-editor { width: 100%; max-width: 1120px; flex: 1; min-height: 0; margin: 0 auto; overflow: hidden; }
+#editor-form { display: flex; flex-direction: column; height: 100%; }
+.editor-top { flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 16px 24px 16px 14px; border-bottom: 1px solid var(--line); }
+.editor-top h2 { flex: 1; margin: 0; font: 24px/1.35 var(--serif); letter-spacing: -.04em; }
+.editor-top h2:focus { outline: none; }
+.editor-top > button.primary { min-width: 110px; }
+.editor-views { display: none; }
+.editor-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); flex: 1; min-height: 0; }
+#editor-write, #editor-preview { overflow-y: auto; min-width: 0; padding: 24px; overscroll-behavior: contain; }
+.editor-metadata { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 12px; }
+#editor-write label { margin-top: 0; }
+#editor-key { min-height: 46px; padding-left: 8px; }
+#editor-write details { margin: 16px 0 22px; }
+#editor-write summary { cursor: pointer; color: var(--muted); font-size: 13px; padding: 8px 0; min-height: 40px; }
+#editor-write summary span { font-size: 11px; margin-left: 6px; }
+#editor-details .editor-metadata { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-top: 8px; }
+.editor-chord-label { display: flex; justify-content: space-between; align-items: baseline; }
+#editor-bar-count { color: var(--muted); font-size: 12px; }
+#editor-chord-hint { margin: 0 0 12px; }
+#editor-chords { display: block; min-height: 190px; font: 16px/1.9 'Jazz Sans', sans-serif; resize: vertical; tab-size: 2; }
+#editor-chords[aria-invalid="true"] { border-color: var(--danger); }
+.chord-shortcuts { display: flex; gap: 6px; margin-top: 8px; }
+.chord-shortcuts button { flex: 1; padding: 8px; white-space: nowrap; font-size: 13px; }
+.chord-shortcuts button:nth-child(n+3) { flex: 0 0 44px; font-size: 18px; }
+.chord-shortcuts b { margin-left: 4px; }
+#editor-help p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+#editor-help code { color: var(--fg); font: 14px 'Jazz Sans', sans-serif; }
+#editor-preview { background: var(--paper); border-left: 1px solid var(--line); }
+#editor-preview > .eyebrow { color: var(--muted); font-size: 9px; }
+.editor-preview-heading { display: flex; gap: 15px; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); margin: 20px 0 32px; padding-bottom: 20px; }
+.editor-preview-heading h3 { font: 26px/1.4 var(--serif); overflow-wrap: anywhere; margin: 0; }
+.editor-preview-heading > div { min-width: 0; }
+.editor-preview-heading strong { font: 22px var(--serif); flex-shrink: 0; }
+#editor-preview-meta { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; margin: 6px 0 0; }
+#editor-preview-meta:empty { display: none; }
+#editor-preview-empty { margin-top: 40px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+#editor-preview-chords irr-section { background: var(--hover); color: var(--fg); }
+#editor-error { flex-shrink: 0; padding: 12px 24px; margin: 0; border-top: 1px solid var(--line); }
+@media (max-width: 900px) {
+  #chart-editor { max-width: 100%; margin: 0; }
+  .editor-top { padding: 8px 12px; gap: 5px; }
+  .editor-top h2 { font-size: 19px; }
+  .editor-top > button.primary { min-width: 92px; font-size: 14px; }
+  .editor-views { flex-shrink: 0; display: flex; border-bottom: 1px solid var(--line); padding: 0 16px; }
+  .editor-views button { flex: 1; border: 0; border-bottom: 2px solid transparent; border-radius: 0; color: var(--muted); }
+  .editor-views button[aria-pressed="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+  .editor-body { display: flex; }
+  #editor-write, #editor-preview { width: 100%; padding: 20px 16px calc(24px + var(--safe-bottom)); }
+  #editor-preview { border: 0; }
+  #chart-editor[data-view="write"] #editor-preview, #chart-editor[data-view="preview"] #editor-write { display: none; }
+  #editor-chords { min-height: 150px; }
+  #editor-error { padding: 10px 16px calc(10px + var(--safe-bottom)); }
+}
+
+/* Create is a real workspace tab. The form remains mounted between tabs so
+   browsing tunes never throws away a draft. */
+body.is-creating #library-drawer { width: 100%; border-right: 0; }
+body.is-creating .brand-header { min-height: 60px; padding-top: 8px; padding-bottom: 8px; }
+body.is-creating .drawer-tabs { width: 100%; max-width: 1120px; margin: 0 auto; }
+#tab-panel-create { overflow: hidden; }
+#chart-editor label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+#chart-editor input, #chart-editor select { width: 100%; min-width: 0; min-height: 44px; padding: 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); color: var(--fg); font-size: 16px; }
+#editor-chords { width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); color: var(--fg); }
+.editor-main-fields { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.editor-title-field { grid-column: 1 / -1; }
+.notation-insert { display: flex; gap: 8px; margin-bottom: 14px; }
+.notation-insert input, .notation-insert select { flex: 1; }
+.notation-insert button { flex-shrink: 0; }
+#editor-structure { border-top: 1px solid var(--line); padding-top: 4px; }
+#btn-repeat-bars { margin-top: 3px; }
+irr-measure.authored-meter { font-family: 'Jazz Sans', sans-serif; font-weight: 600; font-size: .62em; line-height: .95; transform: none; left: -1.05em; top: -.02em; }
+
+.meter-control { display: flex; align-items: center; gap: 6px; min-width: 0; }
+#chart-editor .meter-control input { width: 64px; flex: 1; text-align: center; padding: 10px 2px 10px 6px; }
+.meter-control input::-webkit-inner-spin-button { opacity: 1; }
+.meter-control > span { color: var(--muted); }
+.notation-insert .meter-control { flex: 1; }

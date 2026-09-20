@@ -1,0 +1,6 @@
+.gradle/
+.kotlin/
+build/
+app/build/
+# Synced from the root web sources by Gradle; never edit these copies.
+app/src/main/assets/web/

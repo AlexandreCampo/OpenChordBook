@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- API 35+ enforces edge-to-edge for apps targeting SDK 35+, which draws
+     the WebView under the status bar and makes the web app's top controls
+     untappable. Opt out: the system lays the window out below the system
+     bars, as on older Android versions. The insets listener in
+     MainActivity covers future versions where this opt-out is removed. -->
+<resources>
+    <style name="Theme.Jazz4all" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowBackground">#f4f1e9</item>
+        <item name="android:statusBarColor">#f4f1e9</item>
+        <item name="android:navigationBarColor">#f4f1e9</item>
+    </style>
+</resources>

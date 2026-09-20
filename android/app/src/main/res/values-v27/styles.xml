@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Jazz4all" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowBackground">#f4f1e9</item>
+        <item name="android:statusBarColor">#f4f1e9</item>
+        <item name="android:navigationBarColor">#f4f1e9</item>
+    </style>
+</resources>

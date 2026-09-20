@@ -1,0 +1,1 @@
+Export individual charts, selected tunes, folders (including subfolders) or the whole library to iReal Pro HTML files. Android uses the system Save as window. Re-importing restores editable charts with their sections, meters and repeats. Simpler documentation and privacy information.

@@ -1,0 +1,40 @@
+AntiFeatures:
+  NonFreeNet:
+    en-US: Optional playlist downloads use third-party services.
+Categories:
+  - Music Practice Tool
+License: GPL-3.0-or-later
+AuthorName: Alexandre Campo
+SourceCode: https://github.com/AlexandreCampo/jazz4all
+IssueTracker: https://github.com/AlexandreCampo/jazz4all/issues
+
+Name: jazz4all
+
+RepoType: git
+Repo: https://github.com/AlexandreCampo/jazz4all.git
+
+Builds:
+  - versionName: '1.12'
+    versionCode: 13
+    commit: v1.12
+    subdir: android/app
+    gradle:
+      - yes
+    gradleprops:
+      - unsignedRelease=true
+
+MaintainerNotes: |-
+  All UI assets are local. Native additions include catalog-bound downloads,
+  file selection, immersive reading and Android Back handling; the offline
+  editor and library work without any network service or iReal Pro installation.
+  No tunes are bundled. Optional external repertoire downloads are disclosed
+  under NonFreeNet; please review the catalog for any additional labels.
+  Third-party notices and font provenance are in THIRD_PARTY_NOTICES.md.
+  Development includes AI-assisted code; see CONTRIBUTING.md.
+  AGP 9.4.1 / Gradle 9.7.1 / Java 17 bytecode / SDK 36. Verify the buildserver
+  toolchain before merging. No private signing material is needed.
+
+AutoUpdateMode: Version v%v
+UpdateCheckMode: Tags ^v[0-9]+\.[0-9]+$
+CurrentVersion: '1.12'
+CurrentVersionCode: 13

@@ -1,0 +1,10 @@
+# Only metadata and public examples belong here.
+config.yml
+keystore*
+repo/
+archive/
+logs/
+status/
+tmp/
+unsigned/
+build/

@@ -1,0 +1,1 @@
+Preparing the first public release: GPL version 3 or later, offline About and license notices, documented privacy and source builds, and freely licensed replacement music symbols. Includes the full-screen reader, chart editor, folders and hardened playlist imports.

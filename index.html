@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f1e9">
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'none';
+  script-src 'self';
+  style-src 'self' 'unsafe-inline';
+  font-src 'self';
+  img-src 'self' data:;
+  connect-src 'self' https://dl.dropboxusercontent.com;
+  manifest-src 'self';
+  worker-src 'self';
+  base-uri 'self';
+  form-action 'self';
+  object-src 'none';
+">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="no-referrer">
+<title>jazz4all — an open chord book</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preload" href="src/fonts/JazzSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="vendor/css/ireal-renderer.css">
+<link rel="stylesheet" href="src/styles.css">
+<link rel="stylesheet" href="src/editor.css">
+</head>
+<body>
+<svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-library" viewBox="0 0 24 24"><path d="M4 4v16M9 4v16M14 4l5 16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L21 7l-5-5L4 14Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5h16v-5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 14 4-4m-5 6-2 2a4.2 4.2 0 0 1-6-6l4-4a4.2 4.2 0 0 1 6 0m2 0 2-2a4.2 4.2 0 0 1 6 6l-4 4a4.2 4.2 0 0 1-6 0" transform="translate(1 -1)"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8.5 8.5 0 0 1 10 3a9 9 0 1 0 10 11Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m16 8-2 6-6 2 2-6Z"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7V5h6l2 3h10v12H3Z"/></symbol><symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol><symbol id="i-tools" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16M9 4v6m6 4v6"/></symbol></defs></svg>
+
+<aside id="library-drawer" aria-label="Music library" aria-hidden="true" inert>
+  <header class="brand-header">
+    <div class="app-name">jazz4all<small>an open chord book</small></div>
+    <button id="btn-about" class="text-btn">About</button>
+    <button id="btn-close-library" class="icon-btn" aria-label="Close library"><svg><use href="#i-close"/></svg></button>
+  </header>
+  <div class="drawer-tabs" role="tablist" aria-label="Library sections">
+    <button id="tab-library" class="drawer-tab" role="tab" aria-selected="true" aria-controls="tab-panel-library"><svg><use href="#i-library"/></svg>Library<span id="library-total" class="tab-count">0</span></button>
+    <button id="tab-discover" class="drawer-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="tab-panel-discover"><svg><use href="#i-compass"/></svg>Discover</button>
+    <button id="tab-create" class="drawer-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="tab-panel-create"><svg><use href="#i-edit"/></svg>Create</button>
+  </div>
+  <div id="tab-panel-library" class="tab-panel" role="tabpanel" aria-labelledby="tab-library">
+    <div class="library-toolbar">
+      <label class="search-field"><svg><use href="#i-search"/></svg><input id="search-input" type="search" aria-label="Search title, composer or tag" placeholder="Find a tune or composer…" autocomplete="off"><kbd>/</kbd></label>
+    </div>
+    <div id="folder-navigation"><p id="folder-breadcrumb" aria-label="Current folder path"></p><button id="btn-change-folder" class="text-btn">Change</button></div>
+    <div id="library-browser">
+      <div id="tune-list-toolbar" class="library-toolbar-buttons">
+        <span id="tune-list-label">Tunes</span><button id="btn-folder-add-tunes" class="text-btn" hidden>Add tunes</button>
+        <button id="btn-group-toggle" class="tool-btn" title="Keep versions of the same tune together" aria-pressed="false"><span class="toggle-track" aria-hidden="true"></span>Group versions</button>
+        <button id="btn-select" class="text-btn" aria-pressed="false">Select</button>
+      </div>
+      <ul id="song-list" aria-label="Songs"></ul>
+      <div id="library-empty" class="library-empty" hidden><h3>No tunes yet</h3><p>Import a playlist into this folder, or add tunes from your library.</p><button id="btn-empty-add" class="text-btn">Add tunes from library</button></div>
+    </div>
+    <div id="select-bar" class="select-bar" hidden>
+      <div class="selection-heading"><span id="select-count" role="status">0 selected</span><button id="btn-select-all" class="text-btn">Select all shown</button><button id="btn-select-done" class="text-btn">Done</button></div>
+      <button id="btn-export-selected">Export to file</button><button id="btn-move-folder">Move</button><button id="btn-to-folder">Add to folder</button><button id="btn-remove-from-folder" hidden>Remove from folder</button><button id="btn-delete-songs" class="danger">Delete tunes</button>
+    </div>
+    <footer class="library-footer"><span id="song-count" aria-live="polite">0 songs</span><button id="btn-export-folder" class="text-btn">Export to file</button><button id="btn-wipe" class="text-btn danger" title="Delete all songs, playlists and folders" hidden>Clear library</button></footer>
+  </div>
+  <div id="tab-panel-discover" class="tab-panel" role="tabpanel" aria-labelledby="tab-discover" hidden>
+    <div id="discover-content"></div>
+    <div class="import-actions">
+      <button id="btn-import-file" class="primary"><svg><use href="#i-upload"/></svg>Import playlist</button>
+      <button id="btn-import-uri"><svg><use href="#i-link"/></svg>Paste link</button>
+      <input id="file-input" type="file" accept=".html,.htm,text/html" hidden>
+    </div>
+  </div>
+  <div id="tab-panel-create" class="tab-panel" role="tabpanel" aria-labelledby="tab-create" hidden>
+<section id="chart-editor" aria-labelledby="editor-heading" data-view="write">
+  <form id="editor-form">
+    <header class="editor-top">
+      <h2 id="editor-heading" tabindex="-1">New chart</h2>
+      <button id="btn-editor-close" class="text-btn" type="button">Discard</button>
+      <button id="btn-editor-save" class="primary" type="submit">Save chart</button>
+    </header>
+    <nav class="editor-views" aria-label="Editor view"><button type="button" data-editor-view="write" aria-pressed="true" aria-controls="editor-write">Write</button><button type="button" data-editor-view="preview" aria-pressed="false" aria-controls="editor-preview">Preview</button></nav>
+    <div class="editor-body">
+      <section id="editor-write" aria-label="Chord entry">
+        <div class="editor-metadata editor-main-fields"><div class="editor-title-field"><label for="editor-title">Title</label><input id="editor-title" maxlength="160" placeholder="Name your tune" autocomplete="off"></div><div><label for="editor-key">Key</label><select id="editor-key"></select></div><div><label id="editor-meter-label" for="editor-meter-top">Time signature</label><div class="meter-control" role="group" aria-labelledby="editor-meter-label"><input id="editor-meter-top" type="number" min="1" max="99" step="1" inputmode="numeric" value="4" aria-label="Time signature numerator"><span aria-hidden="true">/</span><input id="editor-meter-bottom" type="number" min="1" max="99" step="1" inputmode="numeric" value="4" aria-label="Time signature denominator"></div></div></div>
+        <details id="editor-details"><summary>Composer &amp; style <span>optional</span></summary><div class="editor-metadata"><div><label for="editor-composer">Composer</label><input id="editor-composer" maxlength="160" autocomplete="off"></div><div><label for="editor-style">Style</label><input id="editor-style" maxlength="80" placeholder="e.g. Swing" autocomplete="off"></div></div></details>
+        <div class="editor-chord-label"><label for="editor-chords">Chords</label><span id="editor-bar-count"></span></div>
+        <p id="editor-chord-hint" class="dialog-hint">Separate bars with <b>|</b> or a new line. Four bars per chart row.</p>
+        <textarea id="editor-chords" rows="8" maxlength="20000" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" aria-describedby="editor-chord-hint editor-error" placeholder="Dm7 | G7 | Cmaj7 | %"></textarea>
+        <div class="chord-shortcuts" aria-label="Insert chord notation"><button type="button" data-chord-insert=" | ">Bar <b>|</b></button><button type="button" data-chord-insert="%" title="Repeat the previous bar">Repeat <b>%</b></button><button type="button" data-chord-insert="b" aria-label="Insert flat">♭</button><button type="button" data-chord-insert="#" aria-label="Insert sharp">♯</button><button type="button" data-chord-insert="newline" aria-label="Insert new line">↵</button></div>
+        <details id="editor-structure"><summary>Sections, meter changes &amp; repeats</summary>
+          <label for="editor-section-name">Section name</label><div class="notation-insert"><input id="editor-section-name" placeholder="AABA, Intro, Bridge…" maxlength="24"><button id="btn-insert-section" type="button">Insert</button></div>
+          <label id="editor-bar-meter-label" for="editor-bar-meter-top">Change meter at this bar</label><div class="notation-insert"><div class="meter-control" role="group" aria-labelledby="editor-bar-meter-label"><input id="editor-bar-meter-top" type="number" min="1" max="99" step="1" inputmode="numeric" value="3" aria-label="Change meter at this bar numerator"><span aria-hidden="true">/</span><input id="editor-bar-meter-bottom" type="number" min="1" max="99" step="1" inputmode="numeric" value="4" aria-label="Change meter at this bar denominator"></div><button id="btn-insert-meter" type="button">Insert</button></div>
+          <button id="btn-repeat-bars" type="button">Repeat selected bars</button><p class="dialog-hint">Select whole bars in the chord field, then repeat them. With no selection, repeats the current bar.</p>
+        </details>
+        <details id="editor-help"><summary>Chord notation</summary><p>Use spaces for chords in the same bar: <code>Dm7 G7 | Cmaj7</code>. Up to four chords fit in a bar; two chords split it evenly.</p><p>Minor: <code>Dm7</code> or <code>D-7</code><br>Major: <code>Cmaj7</code> or <code>CΔ7</code><br>Altered: <code>G7b9</code>, <code>G7#5</code>, <code>G7alt</code><br>Other: <code>F#dim7</code>, <code>Bø7</code>, <code>Csus4</code>, <code>C6/9</code><br>Slash chord: <code>Cmaj7/E</code></p><p><code>%</code> repeats the previous bar. Use <code>|: Dm7 | G7 :|</code> for repeat barlines. Put <code>[AABA]</code> or <code>[Bridge]</code> before a section. Use <code>[3/4]</code> at a bar to change meter until the next change.</p></details>
+      </section>
+      <section id="editor-preview" aria-label="Chart preview">
+        <span class="eyebrow">CHART PREVIEW</span>
+        <div class="editor-preview-heading"><div><h3 id="editor-preview-title">Untitled</h3><p id="editor-preview-meta"></p></div><strong id="editor-preview-key">C</strong></div>
+        <p id="editor-preview-empty">Your chart will appear here as you write.</p>
+        <div id="editor-preview-chords" aria-label="Preview chords"></div>
+      </section>
+    </div>
+    <p id="editor-error" class="form-error" role="alert"></p>
+  </form>
+</section>
+  </div>
+</aside>
+
+<div id="workspace">
+  <header id="topbar">
+    <button id="btn-library" class="icon-btn" aria-label="Open library" aria-controls="library-drawer" aria-expanded="false" title="Open library"><svg><use href="#i-library"/></svg></button>
+    <div class="topbar-title"><span class="eyebrow" id="view-label">an open chord book</span><h1 id="song-title">jazz4all</h1></div>
+    <div class="topbar-actions">
+      <button id="btn-chart-tools" class="icon-btn" aria-label="Chart settings" title="Chart settings" hidden><svg><use href="#i-tools"/></svg></button>
+      <button id="btn-theme" class="icon-btn" aria-label="Switch to night mode" title="Switch to night mode"><svg><use href="#i-moon"/></svg></button>
+      <button id="btn-focus" class="icon-btn" aria-label="Enter stage view" title="Stage view (F)" aria-pressed="false" hidden><svg><use href="#i-expand"/></svg></button>
+    </div>
+  </header>
+
+  <main id="viewport">
+    <section id="empty-state" hidden>
+      <div class="welcome-heading"><h2>an open<br><em>chord book</em></h2></div>
+      <p class="welcome-description">Open a tune from your library, or import a playlist to get started.</p>
+      <div class="welcome-actions">
+        <button id="btn-import-empty" class="welcome-action"><span class="action-number">01</span><span class="action-copy"><strong>Import a playlist</strong><span>Import an iRealPro .html playlist or paste a link.</span></span><svg><use href="#i-arrow"/></svg></button>
+        <button id="btn-discover-empty" class="welcome-action"><span class="action-number">02</span><span class="action-copy"><strong>Browse community playlists</strong><span>Explore community collections, from swing to bossa.</span></span><svg><use href="#i-arrow"/></svg></button>
+        <button id="btn-new-chart-empty" class="welcome-action"><span class="action-number">03</span><span class="action-copy"><strong>Write a chord chart</strong><span>Enter your chords and save a tune to your library.</span></span><svg><use href="#i-arrow"/></svg></button>
+      </div>
+
+    </section>
+
+    <article id="chart-sheet" hidden aria-label="Chord chart">
+      <header class="chart-heading"><div><span id="chart-style" class="eyebrow"></span><h2 id="chart-title"></h2><p id="chart-composer"></p></div><div class="chart-key"><span class="eyebrow">KEY</span><strong id="chart-key"></strong></div></header>
+      <section id="chart-container" aria-label="Chords"></section>
+      <footer class="chart-footer"><span id="chart-position"></span></footer>
+    </article>
+    <div id="drop-hint" hidden>Drop your .html playlist to import</div>
+  </main>
+
+
+</div>
+<div id="scrim" hidden></div>
+
+<dialog id="about-dialog" aria-labelledby="about-title">
+  <div class="dialog-top"><h2 id="about-title">About jazz4all</h2><button class="icon-btn" data-close-dialog aria-label="Close about"><svg><use href="#i-close"/></svg></button></div>
+  <p>an open chord book · Version 1.12</p>
+  <p>Copyright © 2026 Alexandre Campo</p>
+  <p>Free software: you can use, study, share and modify it under the GNU General Public License, version 3 or any later version. Provided without warranty.</p>
+  <p>Your library stays on this device. No account, ads, analytics or tracking. Tunes are not packaged; they are downloaded by the user.</p>
+  <p><a href="https://github.com/AlexandreCampo/jazz4all" target="_blank" rel="noopener noreferrer">Source code on GitHub</a></p>
+  <details data-license="LICENSE"><summary>GNU GPL version 3</summary><pre class="license-text"></pre></details>
+  <details data-license="THIRD_PARTY_NOTICES.md"><summary>Third-party credits</summary><pre class="license-text"></pre></details>
+  <details data-license="licenses/ireal-renderer-MIT.txt"><summary>iReal renderer · MIT</summary><pre class="license-text"></pre></details>
+  <details data-license="licenses/ireal-reader-MIT.txt"><summary>iReal reader · MIT</summary><pre class="license-text"></pre></details>
+  <details data-license="licenses/Bravura-OFL.txt"><summary>Music symbols · SIL OFL</summary><pre class="license-text"></pre></details>
+  <details data-license="src/fonts/SourceSans3-LICENSE.md"><summary>Interface type · SIL OFL</summary><pre class="license-text"></pre></details>
+  <details data-license="src/fonts/NotoSerif-LICENSE.txt"><summary>Chart type · SIL OFL</summary><pre class="license-text"></pre></details>
+  <details data-license="licenses/Apache-2.0.txt"><summary>Android libraries · Apache 2.0</summary><pre class="license-text"></pre></details>
+  <details data-license="PRIVACY.md"><summary>Privacy and storage</summary><pre class="license-text"></pre></details>
+  <menu><button data-close-dialog>Close</button></menu>
+</dialog>
+
+<dialog id="chart-tools-dialog" aria-labelledby="chart-tools-title">
+  <div class="dialog-top"><h2 id="chart-tools-title">Chart settings</h2><button class="icon-btn" data-close-dialog aria-label="Close chart settings"><svg><use href="#i-close"/></svg></button></div>
+  <nav id="bottombar" aria-label="Chart controls">
+    <button id="btn-prev" class="icon-btn" aria-label="Previous song" title="Previous song (←)"><svg class="flip"><use href="#i-chevron"/></svg></button>
+    <div class="control-group"><span class="control-label">CHART SIZE</span><div class="zoom-group"><button id="btn-zoom-out" class="icon-btn" aria-label="Smaller chart" title="Smaller chart ([)">A−</button><button id="btn-zoom-reset" class="text-btn" aria-label="Reset chart to fit" title="Auto-fit (0)">Fit</button><button id="btn-zoom-in" class="icon-btn" aria-label="Larger chart" title="Larger chart (])">A+</button></div></div>
+    <div class="control-divider"></div>
+    <div class="control-group"><span class="control-label">TRANSPOSE</span><div class="transpose-group"><button id="btn-transpose-down" class="icon-btn" aria-label="Transpose down" title="Transpose down (−)">♭</button><button id="transpose-display" class="text-btn" aria-label="Reset transposition" title="Reset transposition" aria-live="polite">0</button><button id="btn-transpose-up" class="icon-btn" aria-label="Transpose up" title="Transpose up (+)">♯</button></div></div>
+    <button id="btn-next" class="icon-btn" aria-label="Next song" title="Next song (→)"><svg><use href="#i-chevron"/></svg></button>
+  </nav><div class="chart-tools-footer"><button id="btn-reader-theme">Switch to night mode</button><button id="btn-export-chart">Export to file</button><button class="primary" data-close-dialog>Back to chart</button></div>
+</dialog>
+<dialog id="export-dialog" aria-labelledby="export-title">
+  <h2 id="export-title">Export to file</h2>
+  <p id="export-scope" class="dialog-description"></p>
+  <p id="export-count"></p>
+  <p id="export-filename" class="export-filename"></p>
+  <p class="dialog-hint">Import this file into jazz4all or open it with iReal Pro.</p>
+  <p id="export-error" class="form-error" role="alert"></p>
+  <menu><button id="btn-export-cancel" data-close-dialog>Cancel</button><button id="btn-export-save" class="primary">Export to file</button></menu>
+</dialog>
+<dialog id="import-dialog" aria-labelledby="import-title">
+  <div class="dialog-top"><span class="eyebrow">BUILD YOUR REPERTOIRE</span><button class="icon-btn" data-close-dialog aria-label="Close import"><svg><use href="#i-close"/></svg></button></div>
+  <h2 id="import-title">Bring your tunes.</h2><p class="dialog-description">Add the playlists you already love. Once imported, your charts are ready offline.</p>
+  <button id="btn-import-choose-file" class="import-option"><svg><use href="#i-upload"/></svg><span><strong>Open a playlist file</strong><small>An .html export from iRealPro</small></span><span aria-hidden="true">→</span></button>
+  <button id="btn-import-choose-link" class="import-option"><svg><use href="#i-link"/></svg><span><strong>Paste a playlist link</strong><small>An irealb:// playlist link</small></span><span aria-hidden="true">→</span></button>
+  <p class="dialog-hint">Looking for music? <button id="btn-import-discover" class="text-btn">Explore Discover ↗</button></p>
+</dialog>
+<dialog id="uri-dialog" aria-labelledby="uri-title">
+  <form method="dialog"><span class="eyebrow">IMPORT FROM A LINK</span><h2 id="uri-title">Paste a playlist link</h2><p class="dialog-description">Copy an iRealPro playlist link from a community post or a shared playlist.</p><label for="uri-input">Playlist link</label><textarea id="uri-input" rows="5" placeholder="irealb://…" autocomplete="off" spellcheck="false" required></textarea><p id="uri-error" class="form-error" role="alert"></p><menu><button value="cancel" formnovalidate>Cancel</button><button id="btn-uri-submit" value="ok" class="primary">Choose folder</button></menu></form>
+</dialog>
+
+<dialog id="folder-browser-dialog" aria-labelledby="folder-browser-title">
+  <div class="dialog-top"><h2 id="folder-browser-title">Choose a folder</h2><button class="icon-btn" data-close-dialog aria-label="Close folder browser"><svg><use href="#i-close"/></svg></button></div>
+  <nav id="folder-browser-path" class="folder-tree-path" aria-label="Browse folder path"></nav>
+  <div class="folder-actions"><button id="btn-browser-new" class="text-btn">+ New folder</button><button id="btn-browser-edit" class="text-btn" hidden>Edit this folder</button></div>
+  <ul id="folder-browser-list" class="folder-tree-list" aria-label="Folders"></ul><p id="folder-browser-empty" class="dialog-hint"></p>
+  <p id="folder-browser-error" class="form-error" role="alert"></p>
+  <footer class="folder-browser-footer"><span id="folder-browser-selection"></span><button id="btn-browser-open" class="primary">Open folder</button></footer>
+</dialog>
+<dialog id="destination-dialog" aria-labelledby="destination-title">
+  <form id="destination-form" method="dialog">
+    <h2 id="destination-title">Choose a folder</h2><p id="destination-description" class="dialog-description"></p>
+    <fieldset id="destination-mode" hidden><legend>Organize tunes</legend><label><input type="radio" name="folder-mode" value="move" checked> Move</label><label><input type="radio" name="folder-mode" value="add"> Add to another folder</label></fieldset>
+    <p id="destination-mode-hint" class="dialog-hint"></p>
+    <nav id="destination-path" class="folder-tree-path" aria-label="Destination folder path"></nav>
+    <ul id="destination-list" class="folder-tree-list" aria-label="Destination folders"></ul>
+    <p id="destination-empty" class="dialog-hint"></p>
+    <button id="btn-destination-new" class="text-btn" type="button">+ Create a folder here</button>
+    <p id="destination-selection" class="dialog-hint" aria-live="polite"></p>
+    <p id="destination-error" class="form-error" role="alert"></p>
+    <menu><button value="cancel" formnovalidate>Cancel</button><button id="btn-destination-confirm" value="save" class="primary">Import tunes</button></menu>
+  </form>
+</dialog>
+<dialog id="folder-editor-dialog" aria-labelledby="folder-editor-title">
+  <form id="folder-editor-form" method="dialog">
+    <h2 id="folder-editor-title">New folder</h2>
+    <label for="folder-editor-name">Name</label><input id="folder-editor-name" placeholder="e.g. Friday set" required maxlength="120" autocomplete="off">
+    <label for="folder-editor-parent">Inside</label><select id="folder-editor-parent"></select>
+    <p id="folder-editor-error" class="form-error" role="alert"></p>
+    <button id="btn-folder-delete" class="text-btn danger" type="button" hidden>Delete this folder…</button>
+    <menu><button value="cancel" formnovalidate>Cancel</button><button id="btn-folder-save" value="save" class="primary">Create folder</button></menu>
+  </form>
+</dialog>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<script src="vendor/ireal-reader-tiny.js"></script>
+<script src="vendor/ireal-renderer.js"></script>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

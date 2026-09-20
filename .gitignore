@@ -1,0 +1,29 @@
+# Generated output and development dependencies
+dist/
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+test-results/
+playwright-report/
+
+# Private signing material and local configuration
+*.keystore
+*.jks
+*.p12
+keystore.properties
+local.properties
+config.local.yml
+config.private.yml
+.env
+.env.*
+!.env.example
+
+# Editor, machine and review state
+.idea/
+.vscode/
+*.iml
+.DS_Store
+.playwright-mcp/
+.codex/
+.agents/
