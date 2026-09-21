@@ -3,9 +3,10 @@
 Application ID: `io.github.openchordbook` · License: `GPL-3.0-or-later`
 
 [metadata/io.github.openchordbook.yml](metadata/io.github.openchordbook.yml) is the
-submission recipe for https://github.com/AlexandreCampo/OpenChordBook, candidate
-`v1.18` / versionCode 19. The tag and a successful public-source build must
-exist before submission. Inclusion is not approved by the presence of this file.
+submission recipe for https://github.com/AlexandreCampo/OpenChordBook,
+`v1.18` / versionCode 19. The tag is public and the recipe is pinned to its full
+commit hash. It passes the official container build; see [build-check.md](build-check.md).
+F-Droid pipeline execution, review and publication are separate steps.
 
 ## Eligibility and review points
 
@@ -41,12 +42,13 @@ publication; switching signing keys later is disruptive.
 
 ## Submit the recipe
 
-1. Review, commit and publish the source with the `v1.18` tag. Follow
-   [the release checklist](../../docs/releases.md). Confirm that the permanent
+1. For each release, review, commit and publish the source with its version
+   tag. Follow [the release checklist](../../docs/releases.md). Confirm that the permanent
    application ID is unique and uses a namespace appropriate for the project.
 2. Fork `https://gitlab.com/fdroid/fdroiddata` under your GitLab account and clone
    that fork separately. Create a `io.github.openchordbook` branch.
-3. Copy this repository's `packaging/fdroid/metadata/io.github.openchordbook.yml`
+3. Set the build's `commit` to the full hash behind the release tag. Copy
+   `packaging/fdroid/metadata/io.github.openchordbook.yml` from this repository
    into the fork's `metadata/` directory. Store descriptions/screenshots remain
    in this app repository under `fastlane/metadata/android/en-US/`.
 4. Install current fdroidserver or use the official buildserver environment
@@ -65,7 +67,7 @@ fdroid build --latest io.github.openchordbook
    a toolchain change is required. Avoid broad scanner exclusions.
 6. Commit the recipe in your fdroiddata fork, push the branch, and open a merge
    request to fdroid/fdroiddata. Use [submission.md](submission.md) as a draft,
-   replacing its pending build-result entry with the actual log/CI link.
+   adding the fork pipeline result and checking the remaining submission items.
 7. Follow CI and answer review questions. After merge, wait for the repository's
    build/sign/index process, then verify the published listing and installation.
    There is no guaranteed acceptance or publication date.

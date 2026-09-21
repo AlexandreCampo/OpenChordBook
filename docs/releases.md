@@ -2,8 +2,9 @@
 
 Public source: https://github.com/AlexandreCampo/OpenChordBook
 
-The first public candidate is **1.18 / versionCode 19**. The source uses
-GPL-3.0-or-later; copyright © 2026 Alexandre Campo. This repository does not
+Release **1.18 / versionCode 19** is tagged as `v1.18`. Its
+[official-container build check](../packaging/fdroid/build-check.md) passes.
+The source uses GPL-3.0-or-later; copyright © 2026 Alexandre Campo. This repository does not
 publish automatically. Review the source before committing, tagging or pushing.
 
 ## Before tagging
@@ -31,7 +32,7 @@ After review, commit the intended source and create the matching annotated
 release tag (for this candidate, `v1.18`). Do not move an already published tag.
 Build the release from that exact revision, using your existing private APK key.
 
-From a clean committed checkout:
+From a clean checkout of the release tag:
 
 ```sh
 python3 scripts/export-source.py dist/openchordbook-1.18-source.tar.gz
