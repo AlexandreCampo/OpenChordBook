@@ -4,7 +4,7 @@
 const assert = require('node:assert/strict');
 const path = require('node:path');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const base = process.env.JAZZ4ALL_URL || 'http://127.0.0.1:8001';
+const base = process.env.OPENCHORDBOOK_URL || 'http://127.0.0.1:8001';
 assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
 (async () => {
   const browser = await chromium.launch({ headless: true, executablePath: process.env.BROWSER_EXECUTABLE });
@@ -24,7 +24,7 @@ assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
       const child = await s.createFolder('Warm-ups', folder.id);
       const text = '[A]\n|: Dm7 | G7 | Cmaj7 | % :|\nAm7 | D7 | Dm7 G7 | C6\n[B]\nFmaj7 | Fm6 | Em7 | A7\nDm7 | G7 | Cmaj7 | %\n[A]\nDm7 | G7 | Cmaj7 | Am7\nDm7 G7 | Cmaj7 | G7 | C6';
       for (const title of ['Morning changes', 'Minor colours', 'Three-beat study', 'Two chords, one bar', 'Turnaround practice', 'Descending bass', 'A quiet bridge', 'Open voicings']) {
-        const raw = { title, composer: 'jazz4all practice studies', key: 'C', style: 'Swing', transpose: 0, ...compileChart(text, { meter: '4/4' }) };
+        const raw = { title, composer: 'OpenChordBook practice studies', key: 'C', style: 'Swing', transpose: 0, ...compileChart(text, { meter: '4/4' }) };
         await s.saveChart(raw, { version: 1, text, meter: '4/4' }, { folderId: folder.id });
       }
       const library = await import('/src/library.js');

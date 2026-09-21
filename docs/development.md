@@ -38,11 +38,12 @@ see [tests/README.md](../tests/README.md).
 | Module | Responsibility |
 | --- | --- |
 | `src/app.js` | Connects the workspace, reader controls, imports and lifecycle |
+| `src/chart-sizing.js` | Fits the rendered chart to available space and remembers default/minimum sizes |
 | `src/library.js` | Library state, search, grouping and the three workspace tabs |
 | `src/storage.js` | IndexedDB transactions, songs, folder memberships and preferences |
 | `src/folders.js`, `folder-browser.js`, `folder-tree.js` | Destination selection and folder management |
 | `src/editor.js`, `chord-entry.js` | Authored chart form, chord notation and compilation |
-| `src/viewer.js` | Adapts the vendored renderer for authored and imported charts |
+| `src/viewer.js` | Adapts the vendored renderer and reserves row space for time signatures |
 | `src/import.js`, `chart-safety.js`, `sanitize.js` | Parsing, limits, validation and rendering safety |
 | `src/playlist-export.js`, `export-dialog.js` | iReal playlist files, editable chart round trips and export actions |
 | `src/discover.js` | Catalog display, optional downloads and import previews |
@@ -90,5 +91,5 @@ releases, deploy the website or submit an F-Droid merge request.
 
 Export follows the [iReal Pro chart protocol](https://www.irealpro.com/ireal-pro-custom-chord-chart-protocol/)
 and the existing reader’s `irealb` encoding. Non-executable HTML metadata keeps
-jazz4all-authored charts editable after import. Folder exports flatten the selected
+openchordbook-authored charts editable after import. Folder exports flatten the selected
 folder and descendants, including each tune only once.

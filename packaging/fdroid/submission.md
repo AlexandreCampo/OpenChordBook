@@ -1,12 +1,12 @@
-# New App: jazz4all (com.jazz4all.android)
+# New App: OpenChordBook (io.github.openchordbook)
 
-jazz4all is an offline chord chart reader and editor for musicians, with
+OpenChordBook is an offline chord chart reader and editor for musicians, with
 transposition, nested folders, named sections, mixed meters and repeat bars.
 
 - Maintainer: Alexandre Campo
-- Source: https://github.com/AlexandreCampo/jazz4all
-- Issues: https://github.com/AlexandreCampo/jazz4all/issues
-- Candidate tag: `v1.12` (versionCode 13)
+- Source: https://github.com/AlexandreCampo/OpenChordBook
+- Issues: https://github.com/AlexandreCampo/OpenChordBook/issues
+- Candidate tag: `v1.17` (versionCode 18)
 - License: GPL-3.0-or-later; third-party MIT, OFL and Apache notices preserved
 - Build/CI result: **PENDING — replace with the successful public-tag build log**
 - Signing: standard F-Droid signing; no reproducibility claim

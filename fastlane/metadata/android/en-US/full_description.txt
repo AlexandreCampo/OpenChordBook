@@ -1,6 +1,6 @@
 An open chord book for your music stand.
 
-jazz4all reads and edits chord charts, with a full-screen sheet that leaves room for the music. Your library stays on your device. No account, ads, analytics or playback.
+OpenChordBook reads and edits chord charts, with a full-screen sheet that leaves room for the music. Your library stays on your device. No account, ads, analytics or playback.
 
 • Read charts offline and transpose without hiding the chords
 • Write charts using ordinary chord names, with a live preview

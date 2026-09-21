@@ -1,6 +1,6 @@
 # Privacy
 
-jazz4all — Copyright © 2026 Alexandre Campo
+OpenChordBook — Copyright © 2026 Alexandre Campo
 
 Your charts, folders and preferences stay on your device. There are no accounts,
 ads, analytics or trackers, and the app does not upload your library.

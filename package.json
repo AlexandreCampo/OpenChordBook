@@ -1,13 +1,13 @@
 {
-  "name": "jazz4all",
-  "version": "1.12.0",
+  "name": "openchordbook",
+  "version": "1.17.0",
   "private": true,
   "type": "module",
-  "description": "Development tools for jazz4all, an open chord book",
+  "description": "Development tools for OpenChordBook, an open chord book",
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AlexandreCampo/jazz4all.git"
+    "url": "https://github.com/AlexandreCampo/OpenChordBook.git"
   },
   "engines": {
     "node": ">=22"

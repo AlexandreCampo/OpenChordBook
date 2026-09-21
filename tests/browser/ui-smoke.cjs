@@ -1,7 +1,7 @@
 // Fresh, non-persistent browsers with synthetic tunes only. No real profiles.
 const assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const base = process.env.JAZZ4ALL_URL || 'http://127.0.0.1:8001';
+const base = process.env.OPENCHORDBOOK_URL || 'http://127.0.0.1:8001';
 assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
 const makeURI = (title) => 'irealb://' + encodeURIComponent(`${title}=Test Composer==Swing=C==1r34LbKcu7{C |A-7 |D-7 |G7 |C |A-7 |D-7 |G7 Z}=Swing=120=3`);
 (async () => {
@@ -72,10 +72,10 @@ const makeURI = (title) => 'irealb://' + encodeURIComponent(`${title}=Test Compo
     // Reading stays edge to edge and chart settings stay sharp.
     await page.locator('.song-row').click(); await shown('#chart-container irr-chord');
     const sheet = await page.locator('#chart-sheet').boundingBox(); assert.ok(sheet.x <= 1 && sheet.width >= 391);
-    await page.locator('#btn-chart-tools').click();
-    assert.equal(await page.locator('#chart-tools-dialog').evaluate((e) => getComputedStyle(e, '::backdrop').backdropFilter), 'none');
     await page.locator('#btn-transpose-up').click(); assert.equal(await page.locator('#chart-key').textContent(), 'Db');
     await page.locator('#btn-zoom-in').click();
+    await page.locator('#btn-chart-tools').click();
+    assert.equal(await page.locator('#chart-tools-dialog').evaluate((e) => getComputedStyle(e, '::backdrop').backdropFilter), 'none');
     await page.locator('#btn-reader-theme').click();
     await page.getByRole('button', { name: 'Back to chart', exact: true }).click();
     await page.locator('#btn-library').click();
@@ -86,7 +86,7 @@ const makeURI = (title) => 'irealb://' + encodeURIComponent(`${title}=Test Compo
     await page.locator('#destination-list').getByRole('button', { name: /Friday set/ }).click();
     assert.equal(await page.locator('#destination-path [aria-current]').textContent(), 'Friday set');
     await page.locator('#destination-path').getByRole('button', { name: 'Gig book', exact: true }).click();
-    await page.screenshot({ path: '/tmp/jazz4all-destination-browser.png' });
+    await page.screenshot({ path: '/tmp/openchordbook-destination-browser.png' });
     await page.locator('#btn-destination-confirm').click();
     await hidden('#destination-dialog'); await page.waitForFunction(() => document.querySelectorAll('.song-row').length === 2);
     const late = await createFolder('Late set', '');
@@ -149,7 +149,7 @@ const makeURI = (title) => 'irealb://' + encodeURIComponent(`${title}=Test Compo
     const row = await dp.locator('.song-row').first().boundingBox(); assert.ok(row.height >= 44 && row.height <= 56, `Tune height ${row.height}`);
     await dp.locator('#library-browser').evaluate((e) => { e.scrollTop = 1800; });
     assert.deepEqual(await dp.locator('#folder-navigation').boundingBox(), pathBefore);
-    await dp.screenshot({ path: '/tmp/jazz4all-compact-library.png' });
+    await dp.screenshot({ path: '/tmp/openchordbook-compact-library.png' });
     for (const width of [320, 393, 768, 1440]) {
       await dp.setViewportSize({ width, height: 851 });
       assert.equal(await dp.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
@@ -157,12 +157,16 @@ const makeURI = (title) => 'irealb://' + encodeURIComponent(`${title}=Test Compo
     await dense.close();
     // Native Discover imports still use the destination picker.
     const native = await browser.newContext({ viewport: { width: 393, height: 851 } });
-    await native.addInitScript((uri) => { window.playlistRequests = []; window.jazz4allNative = { fetchPlaylist: async (source) => { window.playlistRequests.push(source); return uri; }, setAppearance() {}, setReadingMode(v) { window.lastReadingMode = v; } }; }, makeURI('Discover Fixture'));
+    await native.addInitScript((uri) => { window.playlistRequests = []; window.openchordbookNative = { fetchPlaylist: async (source) => { window.playlistRequests.push(source); return uri; }, setAppearance() {}, setReadingMode(v) { window.lastReadingMode = v; } }; }, makeURI('Discover Fixture'));
     const np = await native.newPage(); await np.goto(base); await np.locator('#empty-state').waitFor({ state: 'visible' });
     await np.locator('#btn-discover-empty').click(); await np.locator('.discover-add-btn').first().click();
     await np.locator('#destination-dialog').waitFor({ state: 'visible' }); await np.locator('#btn-destination-confirm').click();
     await np.waitForFunction(() => document.getElementById('library-total').textContent === '1');
     await np.locator('.song-row').click(); await np.waitForFunction(() => window.lastReadingMode === true);
+    assert.equal(await np.locator('#btn-next').isDisabled(), true);
+    await np.locator('#btn-transpose-up').click();
+    await np.locator('#btn-zoom-in').click();
+    assert.equal(await np.evaluate(() => window.lastReadingMode), true);
     await np.locator('#btn-chart-tools').click(); await np.waitForFunction(() => window.lastReadingMode === false);
     await np.getByRole('button', { name: 'Back to chart', exact: true }).click();
     await np.locator('#btn-library').click(); await np.locator('#tab-discover').click();

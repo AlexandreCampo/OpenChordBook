@@ -25,7 +25,7 @@ def browser_checks():
     with ThreadingHTTPServer(("127.0.0.1", 0), QuietHandler) as server:
         thread = threading.Thread(target=server.serve_forever, daemon=True)
         thread.start()
-        env = {**os.environ, "JAZZ4ALL_URL": f"http://127.0.0.1:{server.server_port}"}
+        env = {**os.environ, "OPENCHORDBOOK_URL": f"http://127.0.0.1:{server.server_port}"}
         try:
             for test in sorted((ROOT / "tests/browser").glob("*.cjs")):
                 run("node", test.relative_to(ROOT), env=env)
@@ -35,11 +35,11 @@ def browser_checks():
 
 
 def native_checks():
-    with tempfile.TemporaryDirectory(prefix="jazz4all-jvm-") as directory:
-        source = ROOT / "android/app/src/main/java/com/jazz4all/android"
+    with tempfile.TemporaryDirectory(prefix="openchordbook-jvm-") as directory:
+        source = ROOT / "android/app/src/main/java/io/github/openchordbook"
         run("javac", "--release", "17", "-d", directory, source / "NetworkPolicy.java",
             source / "PlaylistDownloader.java", source / "PlaylistExport.java", ROOT / "tests/native/NativeSecurityTest.java")
-        run("java", "-cp", directory, "com.jazz4all.android.NativeSecurityTest")
+        run("java", "-cp", directory, "io.github.openchordbook.NativeSecurityTest")
 
 
 def main():

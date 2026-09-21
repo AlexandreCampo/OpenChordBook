@@ -73,7 +73,6 @@ body.is-creating .drawer-tabs { width: 100%; max-width: 1120px; margin: 0 auto; 
 .notation-insert button { flex-shrink: 0; }
 #editor-structure { border-top: 1px solid var(--line); padding-top: 4px; }
 #btn-repeat-bars { margin-top: 3px; }
-irr-measure.authored-meter { font-family: 'Jazz Sans', sans-serif; font-weight: 600; font-size: .62em; line-height: .95; transform: none; left: -1.05em; top: -.02em; }
 
 .meter-control { display: flex; align-items: center; gap: 6px; min-width: 0; }
 #chart-editor .meter-control input { width: 64px; flex: 1; text-align: center; padding: 10px 2px 10px 6px; }

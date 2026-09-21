@@ -1,6 +1,6 @@
 // Copyright (C) 2026 Alexandre Campo
 // SPDX-License-Identifier: GPL-3.0-or-later
-// jazz4all — IndexedDB layer. Plain IDB, no wrapper.
+// OpenChordBook — IndexedDB layer. Plain IDB, no wrapper.
 // Stores:
 //   songs     { id, uri, title, composer, key, style, bpm, tags[], playlistId, folderIds[], dateAdded }
 //   playlists { id, name, dateImported, songCount }
@@ -9,7 +9,7 @@
 
 import { LIMITS, boundedText, validateChart } from './chart-safety.js';
 
-const DB_NAME = 'jazz4all';
+const DB_NAME = 'openchordbook';
 const DB_VERSION = 2;
 
 let dbPromise = null;

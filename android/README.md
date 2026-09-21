@@ -1,7 +1,7 @@
 # Android
 
 The Android app bundles the root web application in a small Java WebView shell.
-Package: `com.jazz4all.android`. Minimum Android version: 7.0 (API 24).
+Package: `io.github.openchordbook`. Minimum Android version: 7.0 (API 24).
 Charts are imported or downloaded by the user; none are packaged in the APK.
 
 ## Requirements
@@ -32,7 +32,7 @@ as a normal release. For a quick isolated development install:
 adb -s EMULATOR_SERIAL install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Debug builds use `com.jazz4all.android.securitytest`, with separate storage.
+Debug builds use `io.github.openchordbook.securitytest`, with separate storage.
 Use `adb devices` to select the intended emulator/device explicitly.
 
 ## Release signing
@@ -41,15 +41,15 @@ Keep a single private APK key for direct updates. If creating a key for a new
 application, store it **outside the source checkout** and back it up securely:
 
 ```sh
-keytool -genkeypair -keystore /PRIVATE/PATH/jazz4all-release.keystore   -alias jazz4all -keyalg RSA -keysize 4096 -validity 10000
+keytool -genkeypair -keystore /PRIVATE/PATH/openchordbook-release.keystore   -alias OpenChordBook -keyalg RSA -keysize 4096 -validity 10000
 ```
 
 Create the ignored `android/keystore.properties` locally:
 
 ```properties
-storeFile=/PRIVATE/PATH/jazz4all-release.keystore
+storeFile=/PRIVATE/PATH/openchordbook-release.keystore
 storePassword=YOUR_PRIVATE_STORE_PASSWORD
-keyAlias=jazz4all
+keyAlias=OpenChordBook
 keyPassword=YOUR_PRIVATE_KEY_PASSWORD
 ```
 
@@ -80,7 +80,7 @@ The shell adds playlist downloads, Android's import/save file pickers,
 full-screen reading and Back navigation to the web app. Export uses the system
 Save as window and needs no storage permission.
 
-The versioned asset path (`/assets/v13/web/` for versionCode 13) avoids stale
+The versioned asset path (`/assets/v18/web/` for versionCode 18) avoids stale
 service-worker scopes while retaining the IndexedDB origin. Update it together
 with the version when releasing changes. Gradle's generated
 `app/src/main/assets/web/` directory must never be edited or committed.

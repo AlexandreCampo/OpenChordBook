@@ -1,0 +1,1 @@
+Time signatures use traditional music-notation numerals again, with clear spacing from barlines and chords. Imported charts and the editor preview share the same appearance, including multi-digit meters.

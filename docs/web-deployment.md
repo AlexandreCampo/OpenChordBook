@@ -23,7 +23,7 @@ python3 scripts/export-web.py dist/web-next
 
 Upload the **contents of that export** to your HTTPS static host. Do not deploy
 the entire development checkout. The app uses relative asset paths and supports
-a subdirectory such as `/jazz4all/`; keep the exported directory structure intact.
+a subdirectory such as `/openchordbook/`; keep the exported directory structure intact.
 A GitHub Pages deployment can use this export as its artifact. Hosting/Pages
 settings are a maintainer choice; this repository does not automatically deploy.
 

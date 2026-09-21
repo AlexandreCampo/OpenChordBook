@@ -16,6 +16,9 @@ sdk = Path(os.environ.get('ANDROID_SDK_ROOT', os.environ.get('ANDROID_HOME', str
 build_tools = sorted((sdk / 'build-tools').iterdir(), key=lambda p: [int(n) for n in re.findall(r'\d+', p.name)])[-1]
 def aapt(*args): return subprocess.check_output([str(build_tools / 'aapt'), *args], text=True)
 manifest = aapt('dump', 'xmltree', str(apk), 'AndroidManifest.xml')
+identity = aapt('dump', 'badging', str(apk))
+assert "package: name='io.github.openchordbook'" in identity, 'Release application ID must match its F-Droid metadata'
+assert "application-label:'OpenChordBook'" in identity, 'Launcher name must be OpenChordBook'
 assert re.search(r'android:allowBackup.*=\(type 0x12\)0x0', manifest), 'Backup must be disabled in APK'
 assert re.search(r'android:usesCleartextTraffic.*=\(type 0x12\)0x0', manifest), 'Cleartext must be disabled'
 assert not re.search(r'android:debuggable.*=\(type 0x12\)0xffffffff', manifest), 'Release must not be debuggable'
@@ -23,7 +26,7 @@ assert 'securitytest' not in manifest
 assert 'android.intent.category.BROWSABLE' not in manifest, 'No incoming URI/deep-link handler'
 permissions = aapt('dump', 'permissions', str(apk))
 uses = set(re.findall(r"uses-permission: name='([^']+)'", permissions))
-assert uses <= {'android.permission.INTERNET', 'com.jazz4all.android.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'}, uses
+assert uses <= {'android.permission.INTERNET', 'io.github.openchordbook.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'}, uses
 assert 'android.permission.INTERNET' in uses
 # Release resource optimization shortens XML file names; resolve through the table.
 resources = aapt('dump', '--values', 'resources', str(apk))

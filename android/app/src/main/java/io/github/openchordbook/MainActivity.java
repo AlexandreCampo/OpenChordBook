@@ -1,6 +1,6 @@
 // Copyright (C) 2026 Alexandre Campo
 // SPDX-License-Identifier: GPL-3.0-or-later
-package com.jazz4all.android;
+package io.github.openchordbook;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -51,7 +51,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Thin wrapper around the bundled jazz4all web app. The static site ships
+ * Thin wrapper around the bundled OpenChordBook web app. The static site ships
  * inside the APK (assets/web) and is served through WebViewAssetLoader on
  * https://appassets.androidplatform.net — a secure origin, so ES modules,
  * IndexedDB and the service worker behave like on the web.
@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
         webView.requestApplyInsets();
 
         final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
-                .addPathHandler("/assets/v13/", new WebViewAssetLoader.AssetsPathHandler(this))
+                .addPathHandler("/assets/v18/", new WebViewAssetLoader.AssetsPathHandler(this))
                 .build();
 
         WebSettings settings = webView.getSettings();
@@ -131,7 +131,7 @@ public class MainActivity extends Activity {
         settings.setAllowContentAccess(false);
         settings.setMediaPlaybackRequiresUserGesture(true);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
-        settings.setUserAgentString(settings.getUserAgentString() + " jazz4all/1.12");
+        settings.setUserAgentString(settings.getUserAgentString() + " openchordbook/1.17");
         settings.setSupportMultipleWindows(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(false);
 
@@ -311,7 +311,7 @@ public class MainActivity extends Activity {
 
     private void handleBackNavigation() {
         // Dismiss the current web surface before leaving the music stand.
-        webView.evaluateJavascript("window.jazz4allBack ? window.jazz4allBack() : false", handled -> {
+        webView.evaluateJavascript("window.openchordbookBack ? window.openchordbookBack() : false", handled -> {
             if (!"true".equals(handled)) {
                 if (webView.canGoBack()) webView.goBack();
                 else finish();
@@ -355,7 +355,7 @@ public class MainActivity extends Activity {
                 }
             }
         } catch (Exception ignored) { sources.clear(); }
-        WebViewCompat.addWebMessageListener(webView, "jazz4allHost", Collections.singleton(ASSET_ORIGIN),
+        WebViewCompat.addWebMessageListener(webView, "openchordbookHost", Collections.singleton(ASSET_ORIGIN),
                 (view, message, origin, mainFrame, reply) -> {
                     if (destroyed || !mainFrame || !NetworkPolicy.localOrigin(origin.toString())) return;
                     try {

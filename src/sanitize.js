@@ -1,6 +1,6 @@
 // Copyright (C) 2026 Alexandre Campo
 // SPDX-License-Identifier: GPL-3.0-or-later
-// jazz4all — sanitize parsed iRealPro songs before handing to the renderer.
+// OpenChordBook — sanitize parsed iRealPro songs before handing to the renderer.
 //
 // The renderer (vendor/ireal-renderer.js) builds chord-chart HTML by
 // concatenating song-derived strings into a template that it assigns via

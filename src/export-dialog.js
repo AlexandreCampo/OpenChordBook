@@ -28,11 +28,11 @@ export function openExport(songs, name, description = '') {
     $('btn-export-cancel').disabled = true;
     $('export-error').textContent = '';
     try {
-      if (window.jazz4allNative?.savePlaylist) {
-        const result = await window.jazz4allNative.savePlaylist(file.filename, file.text);
+      if (window.openchordbookNative?.savePlaylist) {
+        const result = await window.openchordbookNative.savePlaylist(file.filename, file.text);
         if (result !== 'saved') return; // The system picker was cancelled.
       } else {
-        if (/jazz4all\//.test(navigator.userAgent)) throw new Error('Update Android System WebView to save playlist files.');
+        if (/openchordbook\//.test(navigator.userAgent)) throw new Error('Update Android System WebView to save playlist files.');
         const url = URL.createObjectURL(new Blob([file.text], { type: 'text/html;charset=utf-8' }));
         const link = document.createElement('a');
         link.href = url; link.download = file.filename;
@@ -40,7 +40,7 @@ export function openExport(songs, name, description = '') {
         setTimeout(() => URL.revokeObjectURL(url), 60000);
       }
       dialog.close();
-      document.dispatchEvent(new CustomEvent('app-notice', { detail: window.jazz4allNative?.savePlaylist ? `Saved ${file.filename}` : `Download started: ${file.filename}` }));
+      document.dispatchEvent(new CustomEvent('app-notice', { detail: window.openchordbookNative?.savePlaylist ? `Saved ${file.filename}` : `Download started: ${file.filename}` }));
     } catch (error) { $('export-error').textContent = error.message; }
     finally {
       saving = false;

@@ -1,11 +1,11 @@
 // Copyright (C) 2026 Alexandre Campo
 // SPDX-License-Identifier: GPL-3.0-or-later
-// jazz4all — Discover tab: curated catalog of community playlists.
+// OpenChordBook — Discover tab: curated catalog of community playlists.
 //
 // Two modes, same catalog:
 //  - Web/PWA: direct imports for exports whose host allows browser downloads;
 //    otherwise source links for manual .html / irealb:// imports.
-//  - Android app: a native bridge (window.jazz4allNative) can fetch a
+//  - Android app: a native bridge (window.openchordbookNative) can fetch a
 //    public source page and extract the irealb:// playlist URI from it.
 //    Entries with a "scrape" hint get an Add button: one tap fetches the
 //    playlist from the source and imports it locally. Fetched URIs are
@@ -25,7 +25,7 @@ export function cancelDownload() { activeController?.abort(); }
 
 export function onImportRequest(cb) { onImportRequestCb = cb; }
 
-const nativeBridge = () => window.jazz4allNative || null;
+const nativeBridge = () => window.openchordbookNative || null;
 
 async function loadCatalog() {
   if (catalog) return catalog;

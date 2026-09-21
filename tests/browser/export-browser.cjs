@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const base = process.env.JAZZ4ALL_URL || 'http://127.0.0.1:8001';
+const base = process.env.OPENCHORDBOOK_URL || 'http://127.0.0.1:8001';
 assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
 (async () => {
   const browser = await chromium.launch({ headless: true, executablePath: process.env.BROWSER_EXECUTABLE });
@@ -57,8 +57,8 @@ assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
     assert.equal(imported.filter((s) => s.chartSource?.text === fixture.source.text).length, 2);
     // Single chart action exports the saved key, regardless of reader transpose.
     await page.locator('#song-list .song-row').first().click();
-    await page.locator('#btn-chart-tools').click();
     await page.locator('#btn-transpose-up').click();
+    await page.locator('#btn-chart-tools').click();
     await page.locator('#btn-export-chart').click();
     const individual = await download();
     assert.equal(individual.data.titles.length, 1);
@@ -75,15 +75,15 @@ assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
     assert.equal(selected.data.titles.length, 2);
     assert.ok(!selected.data.titles.includes('Outside'));
     // Native save cancellation, retry and provider errors preserve the selection.
-    await page.evaluate(() => { window.exportCalls = 0; window.jazz4allNative = { savePlaylist: async () => { window.exportCalls++; return 'cancelled'; } }; });
+    await page.evaluate(() => { window.exportCalls = 0; window.openchordbookNative = { savePlaylist: async () => { window.exportCalls++; return 'cancelled'; } }; });
     await page.locator('#btn-export-selected').click();
     await page.locator('#btn-export-save').click();
     await page.waitForFunction(() => window.exportCalls === 1);
     assert.equal(await page.locator('#export-dialog').isVisible(), true);
-    await page.evaluate(() => { window.jazz4allNative.savePlaylist = async () => { throw new Error('Disk full'); }; });
+    await page.evaluate(() => { window.openchordbookNative.savePlaylist = async () => { throw new Error('Disk full'); }; });
     await page.locator('#btn-export-save').click();
     await page.getByText('Disk full', { exact: true }).waitFor();
-    await page.evaluate(() => { window.jazz4allNative.savePlaylist = async () => 'saved'; });
+    await page.evaluate(() => { window.openchordbookNative.savePlaylist = async () => 'saved'; });
     await page.locator('#btn-export-save').click();
     await page.locator('#export-dialog').waitFor({ state: 'hidden' });
     assert.match(await page.locator('#select-count').textContent(), /2 selected/);

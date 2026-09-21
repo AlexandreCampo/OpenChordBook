@@ -1,6 +1,6 @@
 // Copyright (C) 2026 Alexandre Campo
 // SPDX-License-Identifier: GPL-3.0-or-later
-package com.jazz4all.android;
+package io.github.openchordbook;
 
 import java.nio.charset.StandardCharsets;
 
@@ -18,10 +18,10 @@ final class PlaylistExport {
     }
 
     static String filename(String value) {
-        String name = value == null ? "jazz4all" : value.replaceAll("[\\p{Cntrl}/\\\\:*?\"<>|]", "-")
+        String name = value == null ? "openchordbook" : value.replaceAll("[\\p{Cntrl}/\\\\:*?\"<>|]", "-")
                 .replaceAll("^[. ]+|[. ]+$", "");
         if (name.endsWith(".html")) name = name.substring(0, name.length() - 5);
         if (name.length() > 100) name = name.substring(0, 100);
-        return (name.isEmpty() ? "jazz4all" : name) + ".html";
+        return (name.isEmpty() ? "openchordbook" : name) + ".html";
     }
 }

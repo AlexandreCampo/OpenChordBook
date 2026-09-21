@@ -13,7 +13,7 @@ def main():
     parser.add_argument("--port", type=int, default=8001)
     args = parser.parse_args()
     with ThreadingHTTPServer((args.host, args.port), PublicAssetHandler) as server:
-        print(f"jazz4all: http://{args.host}:{server.server_port}/ (app assets only)", flush=True)
+        print(f"openchordbook: http://{args.host}:{server.server_port}/ (app assets only)", flush=True)
         try:
             server.serve_forever()
         except KeyboardInterrupt:

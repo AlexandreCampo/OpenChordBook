@@ -1,6 +1,6 @@
 {
-  "name": "jazz4all",
-  "short_name": "jazz4all",
+  "name": "OpenChordBook",
+  "short_name": "OpenChordBook",
   "description": "An open chord book: read, write and organize chord charts offline",
   "start_url": "./",
   "scope": "./",

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Android injects this transport only into the exact bundled HTTPS origin.
 // Downloads are asynchronous; a source ID is the only network capability.
-const host = window.jazz4allHost;
+const host = window.openchordbookHost;
 if (host) {
   const pending = new Map();
   let sequence = 0;
@@ -14,7 +14,7 @@ if (host) {
     if (!request) return;
     request.finish(message.error ? new Error(message.error) : null, message.value);
   };
-  window.jazz4allNative = Object.freeze({
+  window.openchordbookNative = Object.freeze({
     setAppearance: (value) => send({ type: 'appearance', value }),
     setReadingMode: (value) => send({ type: 'reading', value: !!value }),
     savePlaylist(filename, text) {

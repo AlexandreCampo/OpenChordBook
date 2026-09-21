@@ -19,7 +19,7 @@
 ">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="no-referrer">
-<title>jazz4all — an open chord book</title>
+<title>OpenChordBook — an open chord book</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -46,7 +46,7 @@
 
 <aside id="library-drawer" aria-label="Music library" aria-hidden="true" inert>
   <header class="brand-header">
-    <div class="app-name">jazz4all<small>an open chord book</small></div>
+    <div class="app-name">OpenChordBook<small>an open chord book</small></div>
     <button id="btn-about" class="text-btn">About</button>
     <button id="btn-close-library" class="icon-btn" aria-label="Close library"><svg><use href="#i-close"/></svg></button>
   </header>
@@ -123,7 +123,7 @@
 <div id="workspace">
   <header id="topbar">
     <button id="btn-library" class="icon-btn" aria-label="Open library" aria-controls="library-drawer" aria-expanded="false" title="Open library"><svg><use href="#i-library"/></svg></button>
-    <div class="topbar-title"><span class="eyebrow" id="view-label">an open chord book</span><h1 id="song-title">jazz4all</h1></div>
+    <div class="topbar-title"><span class="eyebrow" id="view-label">an open chord book</span><h1 id="song-title">OpenChordBook</h1></div>
     <div class="topbar-actions">
       <button id="btn-chart-tools" class="icon-btn" aria-label="Chart settings" title="Chart settings" hidden><svg><use href="#i-tools"/></svg></button>
       <button id="btn-theme" class="icon-btn" aria-label="Switch to night mode" title="Switch to night mode"><svg><use href="#i-moon"/></svg></button>
@@ -150,18 +150,22 @@
     </article>
     <div id="drop-hint" hidden>Drop your .html playlist to import</div>
   </main>
-
-
+  <nav id="bottombar" aria-label="Chart controls" hidden>
+    <button id="btn-prev" class="icon-btn" aria-label="Previous song" title="Previous song (←)"><svg class="flip"><use href="#i-chevron"/></svg></button>
+    <div class="control-group"><span class="control-label">CHART SIZE</span><div class="zoom-group"><button id="btn-zoom-out" class="icon-btn" aria-label="Smaller chart" title="Smaller chart ([)">A−</button><button id="btn-zoom-reset" class="text-btn" aria-label="Reset chart to fit" title="Auto-fit (0)">Fit</button><button id="btn-zoom-in" class="icon-btn" aria-label="Larger chart" title="Larger chart (])">A+</button></div></div>
+    <div class="control-group"><span class="control-label">TRANSPOSE</span><div class="transpose-group"><button id="btn-transpose-down" class="icon-btn" aria-label="Transpose down" title="Transpose down (−)">♭</button><button id="transpose-display" class="text-btn" aria-label="Reset transposition" title="Reset transposition" aria-live="polite">0</button><button id="btn-transpose-up" class="icon-btn" aria-label="Transpose up" title="Transpose up (+)">♯</button></div></div>
+    <button id="btn-next" class="icon-btn" aria-label="Next song" title="Next song (→)"><svg><use href="#i-chevron"/></svg></button>
+  </nav>
 </div>
 <div id="scrim" hidden></div>
 
 <dialog id="about-dialog" aria-labelledby="about-title">
-  <div class="dialog-top"><h2 id="about-title">About jazz4all</h2><button class="icon-btn" data-close-dialog aria-label="Close about"><svg><use href="#i-close"/></svg></button></div>
-  <p>an open chord book · Version 1.12</p>
+  <div class="dialog-top"><h2 id="about-title">About OpenChordBook</h2><button class="icon-btn" data-close-dialog aria-label="Close about"><svg><use href="#i-close"/></svg></button></div>
+  <p>an open chord book · Version 1.17</p>
   <p>Copyright © 2026 Alexandre Campo</p>
   <p>Free software: you can use, study, share and modify it under the GNU General Public License, version 3 or any later version. Provided without warranty.</p>
   <p>Your library stays on this device. No account, ads, analytics or tracking. Tunes are not packaged; they are downloaded by the user.</p>
-  <p><a href="https://github.com/AlexandreCampo/jazz4all" target="_blank" rel="noopener noreferrer">Source code on GitHub</a></p>
+  <p><a href="https://github.com/AlexandreCampo/OpenChordBook" target="_blank" rel="noopener noreferrer">Source code on GitHub</a></p>
   <details data-license="LICENSE"><summary>GNU GPL version 3</summary><pre class="license-text"></pre></details>
   <details data-license="THIRD_PARTY_NOTICES.md"><summary>Third-party credits</summary><pre class="license-text"></pre></details>
   <details data-license="licenses/ireal-renderer-MIT.txt"><summary>iReal renderer · MIT</summary><pre class="license-text"></pre></details>
@@ -176,20 +180,23 @@
 
 <dialog id="chart-tools-dialog" aria-labelledby="chart-tools-title">
   <div class="dialog-top"><h2 id="chart-tools-title">Chart settings</h2><button class="icon-btn" data-close-dialog aria-label="Close chart settings"><svg><use href="#i-close"/></svg></button></div>
-  <nav id="bottombar" aria-label="Chart controls">
-    <button id="btn-prev" class="icon-btn" aria-label="Previous song" title="Previous song (←)"><svg class="flip"><use href="#i-chevron"/></svg></button>
-    <div class="control-group"><span class="control-label">CHART SIZE</span><div class="zoom-group"><button id="btn-zoom-out" class="icon-btn" aria-label="Smaller chart" title="Smaller chart ([)">A−</button><button id="btn-zoom-reset" class="text-btn" aria-label="Reset chart to fit" title="Auto-fit (0)">Fit</button><button id="btn-zoom-in" class="icon-btn" aria-label="Larger chart" title="Larger chart (])">A+</button></div></div>
-    <div class="control-divider"></div>
-    <div class="control-group"><span class="control-label">TRANSPOSE</span><div class="transpose-group"><button id="btn-transpose-down" class="icon-btn" aria-label="Transpose down" title="Transpose down (−)">♭</button><button id="transpose-display" class="text-btn" aria-label="Reset transposition" title="Reset transposition" aria-live="polite">0</button><button id="btn-transpose-up" class="icon-btn" aria-label="Transpose up" title="Transpose up (+)">♯</button></div></div>
-    <button id="btn-next" class="icon-btn" aria-label="Next song" title="Next song (→)"><svg><use href="#i-chevron"/></svg></button>
-  </nav><div class="chart-tools-footer"><button id="btn-reader-theme">Switch to night mode</button><button id="btn-export-chart">Export to file</button><button class="primary" data-close-dialog>Back to chart</button></div>
+  <div class="chart-size-setting">
+    <label for="chart-default-size">Default size <span>pt</span></label>
+    <div class="chart-size-stepper"><button type="button" data-size-input="chart-default-size" data-size-step="-1" aria-label="Decrease default chart size">−</button><input id="chart-default-size" type="number" min="8" max="36" step="1" inputmode="numeric" value="18" aria-describedby="chart-size-hint"><button type="button" data-size-input="chart-default-size" data-size-step="1" aria-label="Increase default chart size">+</button></div>
+  </div>
+  <div class="chart-size-setting">
+    <label for="chart-minimum-size">Minimum size <span>pt</span></label>
+    <div class="chart-size-stepper"><button type="button" data-size-input="chart-minimum-size" data-size-step="-1" aria-label="Decrease minimum chart size">−</button><input id="chart-minimum-size" type="number" min="8" max="36" step="1" inputmode="numeric" value="12" aria-describedby="chart-size-hint"><button type="button" data-size-input="chart-minimum-size" data-size-step="1" aria-label="Increase minimum chart size">+</button></div>
+  </div>
+  <p id="chart-size-hint" class="dialog-hint">Each tune opens at the default size and shrinks only as needed, down to the minimum. Longer charts scroll. Changes apply immediately.</p>
+  <div class="chart-tools-footer"><button id="btn-reader-theme">Switch to night mode</button><button id="btn-export-chart">Export to file</button><button class="primary" data-close-dialog>Back to chart</button></div>
 </dialog>
 <dialog id="export-dialog" aria-labelledby="export-title">
   <h2 id="export-title">Export to file</h2>
   <p id="export-scope" class="dialog-description"></p>
   <p id="export-count"></p>
   <p id="export-filename" class="export-filename"></p>
-  <p class="dialog-hint">Import this file into jazz4all or open it with iReal Pro.</p>
+  <p class="dialog-hint">Import this file into OpenChordBook or open it with iReal Pro.</p>
   <p id="export-error" class="form-error" role="alert"></p>
   <menu><button id="btn-export-cancel" data-close-dialog>Cancel</button><button id="btn-export-save" class="primary">Export to file</button></menu>
 </dialog>

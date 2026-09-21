@@ -1,15 +1,33 @@
-# Using jazz4all
+# Using OpenChordBook
 
 ## Reading charts
 
 On mobile and desktop, opening a tune fills the viewport with the sheet. Only
 Library and Chart settings remain at the top, beside a compact tune heading.
-There are no persistent toolbars, page borders or footers. The Android app also
+The compact bottom bar keeps previous/next tune, chart size and transposition
+within reach while you read or scroll, without covering the chords. Tap **Fit**
+to restore automatic sizing or the transpose number to return to the saved key.
+The Android app also
 hides system bars while reading; swipe from an edge to reveal them temporarily.
 Opening the library or a dialog restores the system bars.
 
-Chart settings contains size, fit, transpose/reset, day/night mode, and previous /
-next tune. The reading sequence stays tied to the folder or search results from
+Each tune opens at **18 pt**, shrinking only when needed to fit the available
+width and height, down to **12 pt**. Short tunes stay at the default size;
+charts that still do not fit at the minimum can scroll. Chart settings lets you
+change both sizes with the −/+ buttons or number fields. These preferences are
+saved on this device, and changes apply immediately without blurring the chart.
+The default is always at least the minimum; changing one past the other adjusts
+both. The live A−/A+ buttons override the size for the current tune. Opening
+another tune restores automatic sizing; rotation refits unless you chose a
+manual size. Older global zoom adjustments no longer carry over between tunes.
+
+Time signatures sit between the opening barline and the first chord, with space
+reserved only on rows that need them. Imported and authored meters use the same
+aligned music-font numerals. Auto-fit includes this space; a dense row that cannot fit at the
+minimum size scrolls horizontally without squeezing its chords together.
+
+Chart settings also contains day/night mode and **Export to file**.
+The reading sequence stays tied to the folder or search results from
 which the tune was opened. Browsing another folder does not change that sequence.
 Library, Discover and Create use the same tabbed workspace on every screen.
 Opening a tune closes that workspace; Library brings it back. Desktop gives the
@@ -50,7 +68,7 @@ and Paste link stay at the bottom of Discover while its collections scroll.
 - **Group versions** combines same-name tunes in the current view, with an
   expandable row for choosing a version. It does not merge or delete records.
 
-The current folder, theme and chart-size preference are remembered. Existing
+The current folder, theme and default/minimum chart sizes are remembered. Existing
 songs and folder hierarchies need no database migration.
 
 ## Writing a chart
@@ -117,9 +135,9 @@ Use **Export to file** in one of three places:
 Review the tune count, then choose **Export to file**. Android opens its Save as
 window; the web app downloads the file through your browser.
 
-The result is an iReal Pro HTML playlist. To restore it in jazz4all, open
+The result is an iReal Pro HTML playlist. To restore it in OpenChordBook, open
 Discover → Import playlist and choose a destination folder. Charts written in
-jazz4all stay editable, with their exact section names, meters and repeats.
+OpenChordBook stay editable, with their exact section names, meters and repeats.
 Folder hierarchy and app preferences are not part of a playlist file.
 
 In iReal Pro, custom section names and meters outside its supported set appear
@@ -140,7 +158,7 @@ storage deletes the local library. See [Privacy](../PRIVACY.md).
 
 - There is no audio playback.
 - Imported charts can be read and transposed; the editor modifies charts
-  authored in jazz4all.
+  authored in openchordbook.
 - Native Android and the web browser have separate libraries. There is no sync.
 - Web Share Target imports and pinch-to-zoom are not implemented. Use the
   file picker/pasted link and the chart-size controls.

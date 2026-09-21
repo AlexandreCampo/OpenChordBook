@@ -5,7 +5,7 @@
      bars, as on older Android versions. The insets listener in
      MainActivity covers future versions where this opt-out is removed. -->
 <resources>
-    <style name="Theme.Jazz4all" parent="android:Theme.Material.NoActionBar">
+    <style name="Theme.OpenChordBook" parent="android:Theme.Material.NoActionBar">
         <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>

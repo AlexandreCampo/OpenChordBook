@@ -1,8 +1,8 @@
 # Contributing
 
-jazz4all is maintained by Alexandre Campo. Start with the
+OpenChordBook is maintained by Alexandre Campo. Start with the
 [development guide](docs/development.md), [test guide](tests/README.md) and
-[issue tracker](https://github.com/AlexandreCampo/jazz4all/issues).
+[issue tracker](https://github.com/AlexandreCampo/OpenChordBook/issues).
 
 ## Changes and review
 

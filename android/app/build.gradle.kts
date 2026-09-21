@@ -32,16 +32,16 @@ val syncWebAssets by tasks.registering(Sync::class) {
 }
 
 android {
-    namespace = "com.jazz4all.android"
+    namespace = "io.github.openchordbook"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.jazz4all.android"
+        applicationId = "io.github.openchordbook"
         minSdk = 24
         targetSdk = 36
-        testInstrumentationRunner = "com.jazz4all.android.SecurityInstrumentation"
-        versionCode = 13
-        versionName = "1.12"
+        testInstrumentationRunner = "io.github.openchordbook.SecurityInstrumentation"
+        versionCode = 18
+        versionName = "1.17"
     }
 
     compileOptions {

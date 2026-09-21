@@ -1,8 +1,8 @@
 # Releases
 
-Public source: https://github.com/AlexandreCampo/jazz4all
+Public source: https://github.com/AlexandreCampo/OpenChordBook
 
-The first public candidate is **1.12 / versionCode 13**. The source uses
+The first public candidate is **1.17 / versionCode 18**. The source uses
 GPL-3.0-or-later; copyright © 2026 Alexandre Campo. This repository does not
 publish automatically. Review the source before committing, tagging or pushing.
 
@@ -28,13 +28,13 @@ the F-Droid recipe's version/build block. Keep APK version codes increasing.
 ## Source and APK artifacts
 
 After review, commit the intended source and create the matching annotated
-release tag (for this candidate, `v1.12`). Do not move an already published tag.
+release tag (for this candidate, `v1.17`). Do not move an already published tag.
 Build the release from that exact revision, using your existing private APK key.
 
 From a clean committed checkout:
 
 ```sh
-python3 scripts/export-source.py dist/jazz4all-1.12-source.tar.gz
+python3 scripts/export-source.py dist/openchordbook-1.17-source.tar.gz
 ```
 
 The exporter refuses a dirty tree and includes committed source/build scripts,
@@ -43,8 +43,8 @@ also rejects common private signing/config paths. It never creates a commit.
 
 Publish a GitHub release for the matching tag, attaching:
 
-- `jazz4all-1.12.apk`, signed with the intended developer key.
-- `jazz4all-1.12-source.tar.gz`, from that exact source revision.
+- `openchordbook-1.17.apk`, signed with the intended developer key.
+- `openchordbook-1.17-source.tar.gz`, from that exact source revision.
 - SHA-256 checksums and the release notes.
 
 Keep corresponding source available alongside each distributed APK. Checksums

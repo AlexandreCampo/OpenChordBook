@@ -16,5 +16,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "jazz4all"
+rootProject.name = "OpenChordBook"
 include(":app")

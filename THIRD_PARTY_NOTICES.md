@@ -1,6 +1,6 @@
 # Third-party notices
 
-jazz4all: Copyright © 2026 Alexandre Campo, GNU GPL-3.0-or-later.
+OpenChordBook: Copyright © 2026 Alexandre Campo, GNU GPL-3.0-or-later.
 The complete license is in LICENSE. This notice and all license texts
 are bundled in the APK and available offline from Library → About.
 
@@ -65,11 +65,11 @@ Build-time tools are not application features or network services.
 ## Artwork, sample material and external content
 
 The application's icons, interface illustrations and store screenshots are
-covered by jazz4all's GPL-3.0-or-later notice. Store screenshots use synthetic
+covered by OpenChordBook's GPL-3.0-or-later notice. Store screenshots use synthetic
 practice charts prepared for this project, not downloaded repertoire.
 
 Tunes are not packaged with the app; they are downloaded by the user.
 The application license does not cover imported music.
 
-iReal Pro is a name used by Technimo LLC. jazz4all is unaffiliated with
+iReal Pro is a name used by Technimo LLC. OpenChordBook is unaffiliated with
 Technimo and does not require the iReal Pro app.

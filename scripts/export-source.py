@@ -15,7 +15,7 @@ args = parser.parse_args()
 root = Path(__file__).resolve().parent.parent
 if subprocess.check_output(['git', 'status', '--porcelain'], cwd=root).strip():
     raise SystemExit('Commit the release changes first; this export uses only a clean HEAD.')
-archive = subprocess.check_output(['git', 'archive', '--format=tar', '--prefix=jazz4all/', 'HEAD'], cwd=root)
+archive = subprocess.check_output(['git', 'archive', '--format=tar', '--prefix=openchordbook/', 'HEAD'], cwd=root)
 with tarfile.open(fileobj=io.BytesIO(archive)) as tar:
     for member in tar.getmembers():
         path = Path(member.name)

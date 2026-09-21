@@ -1,7 +1,7 @@
 // Real browser Fetch behavior, synthetic server responses, no saved tunes.
 const assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const base = process.env.JAZZ4ALL_URL || 'http://127.0.0.1:8001';
+const base = process.env.OPENCHORDBOOK_URL || 'http://127.0.0.1:8001';
 assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
 (async () => {
  const browser = await chromium.launch({ headless: true, executablePath: process.env.BROWSER_EXECUTABLE });

@@ -1,9 +1,9 @@
-# jazz4all
+# OpenChordBook
 
 **an open chord book**
 
 Read, write and organize chord charts on your phone, tablet or computer.
-jazz4all puts the sheet first: a full-screen reading view, transposition
+OpenChordBook puts the sheet first: a full-screen reading view, transposition
 without hiding the chords, and a library that stays on your device.
 
 It works as a standalone web app/PWA and as an Android app. No account,
@@ -37,8 +37,8 @@ accounts or tracking. There are no known security issues at this time.
 Clone the repository and run the local server with Python 3.10 or newer:
 
 ```sh
-git clone https://github.com/AlexandreCampo/jazz4all.git
-cd jazz4all
+git clone https://github.com/AlexandreCampo/OpenChordBook.git
+cd OpenChordBook
 python3 scripts/serve-web.py
 ```
 
@@ -52,7 +52,7 @@ for subdirectory hosting, PWA installation and offline behavior.
 ## Android
 
 Android 7.0 or newer is required. Signed APKs belong on the project's
-[Releases page](https://github.com/AlexandreCampo/jazz4all/releases) when available.
+[Releases page](https://github.com/AlexandreCampo/OpenChordBook/releases) when available.
 For building, signing and installing from source, see [android/README.md](android/README.md).
 F-Droid packaging is prepared; inclusion is not yet approved.
 
@@ -60,7 +60,7 @@ F-Droid packaging is prepared; inclusion is not yet approved.
 
 | Guide | Covers |
 | --- | --- |
-| [Using jazz4all](docs/usage.md) | Reading, folders, import/export, chord entry and shortcuts |
+| [Using OpenChordBook](docs/usage.md) | Reading, folders, import/export, chord entry and shortcuts |
 | [Development](docs/development.md) | Setup, architecture and working on the app |
 | [Tests](tests/README.md) | Unit, browser, native and APK checks |
 | [Web deployment](docs/web-deployment.md) | Static export, HTTPS hosting and PWA support |
@@ -99,4 +99,4 @@ Third-party code and fonts keep their own licenses; see
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 The parser/renderer builds on the work of Michael Daumling and Florin
-Alexandrescu. jazz4all is independent of Technimo LLC and iReal Pro.
+Alexandrescu. OpenChordBook is independent of Technimo LLC and iReal Pro.

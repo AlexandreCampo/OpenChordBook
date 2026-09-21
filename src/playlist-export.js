@@ -5,7 +5,7 @@ import { compileChart, validateMeter } from './chord-entry.js';
 
 const htmlText = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 // '=' delimits fields even after percent decoding. The HTML extension below
-// retains the exact original text for jazz4all round trips.
+// retains the exact original text for OpenChordBook round trips.
 const field = (value = '') => String(value).replace(/=/g, '＝');
 
 function encodeMusic(music) {
@@ -46,7 +46,7 @@ function serializeSong(raw) {
 }
 
 export function exportFilename(name) {
-  return (String(name).normalize('NFC').replace(/[\u0000-\u001f\u007f/\\:*?"<>|]/g, '-').replace(/^[. ]+|[. ]+$/g, '').slice(0, 100) || 'jazz4all') + '.html';
+  return (String(name).normalize('NFC').replace(/[\u0000-\u001f\u007f/\\:*?"<>|]/g, '-').replace(/^[. ]+|[. ]+$/g, '').slice(0, 100) || 'openchordbook') + '.html';
 }
 
 export function songsInFolder(songs, folders, folderId) {
@@ -61,7 +61,7 @@ export function songsInFolder(songs, folders, folderId) {
   return songs.filter((song) => song.folderIds?.some((id) => included.has(id)));
 }
 
-export function createPlaylistFile(songs, name = 'jazz4all') {
+export function createPlaylistFile(songs, name = 'openchordbook') {
   if (!songs.length || songs.length > LIMITS.songs) throw new Error('Select between 1 and 2000 tunes per file.');
   boundedText(name, 'Playlist name');
   const extensions = [];
@@ -78,12 +78,12 @@ export function createPlaylistFile(songs, name = 'jazz4all') {
   if (decoded.length > LIMITS.decodedChars) throw new Error('This playlist is too large. Export fewer tunes at a time.');
   const encoded = encodeURIComponent(decoded);
   if (encoded.length + 9 > LIMITS.uriChars) throw new Error('This playlist link is too large. Export fewer tunes at a time.');
-  const metadata = extensions.length ? `\n<script type="application/json" id="jazz4all-charts">${JSON.stringify({ version: 1, charts: extensions }).replace(/</g, '\\u003c')}</script>` : '';
+  const metadata = extensions.length ? `\n<script type="application/json" id="openchordbook-charts">${JSON.stringify({ version: 1, charts: extensions }).replace(/</g, '\\u003c')}</script>` : '';
   const text = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${htmlText(name)}</title></head>
 <body><h1>${htmlText(name)}</h1><p>${songs.length} tune${songs.length === 1 ? '' : 's'}</p>
 <p><a href="irealb://${encoded}">Open in iReal Pro</a></p>
-<p>To open in jazz4all, choose Discover → Import playlist and select this file.</p>${metadata}
+<p>To open in OpenChordBook, choose Discover → Import playlist and select this file.</p>${metadata}
 </body></html>\n`;
   if (new TextEncoder().encode(text).length > LIMITS.importBytes) throw new Error('This file is too large. Export fewer tunes at a time.');
   return { text, filename: exportFilename(name), count: songs.length };
@@ -93,10 +93,10 @@ export function createPlaylistFile(songs, name = 'jazz4all') {
 // arbitrary meters and section names. Ignore no malformed or stale extensions:
 // refusing the import is preferable to silently restoring different chords.
 export function restoreExportedCharts(songs, text) {
-  const match = /<script type="application\/json" id="jazz4all-charts">([\s\S]*?)<\/script>/i.exec(text);
+  const match = /<script type="application\/json" id="(?:openchordbook|jazz4all)-charts">([\s\S]*?)<\/script>/i.exec(text);
   if (!match) return;
   const data = JSON.parse(match[1]);
-  if (data.version !== 1 || !Array.isArray(data.charts) || data.charts.length > songs.length) throw new Error('Invalid jazz4all chart data.');
+  if (data.version !== 1 || !Array.isArray(data.charts) || data.charts.length > songs.length) throw new Error('Invalid OpenChordBook chart data.');
   const seen = new Set();
   for (const entry of data.charts) {
     if (!Number.isInteger(entry.index) || !songs[entry.index] || seen.has(entry.index)) throw new Error('Invalid exported chart position.');

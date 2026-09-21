@@ -2,7 +2,7 @@
 // to a real browser profile or clears an existing library.
 const assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const base = process.env.JAZZ4ALL_URL || 'http://127.0.0.1:8001';
+const base = process.env.OPENCHORDBOOK_URL || 'http://127.0.0.1:8001';
 assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
 (async () => {
   const browser = await chromium.launch({ headless: true, executablePath: process.env.BROWSER_EXECUTABLE });
@@ -68,23 +68,23 @@ assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
         return d.scrollWidth <= d.clientWidth && d.getBoundingClientRect().left >= 0;
       }), true, `Editor fits at ${width}px`);
     }
-    await page.screenshot({ path: '/tmp/jazz4all-editor-desktop.png' });
+    await page.screenshot({ path: '/tmp/openchordbook-editor-desktop.png' });
     await page.setViewportSize({ width: 393, height: 851 });
     await page.locator('[data-editor-view="preview"]').click();
     await shown('#editor-preview-chords irr-chord');
     assert.deepEqual(await page.locator('#editor-preview-chords irr-section').allTextContents(), ['AABA', 'Bridge']);
-    assert.deepEqual(await page.locator('#editor-preview-chords .authored-meter').allTextContents(), ['44', '34', '128']);
-    await page.screenshot({ path: '/tmp/jazz4all-editor-preview.png' });
+    assert.deepEqual(await page.locator('#editor-preview-chords .authored-meter').evaluateAll(meters => meters.map(meter => meter.getAttribute('aria-label'))), ['Time signature 4/4', 'Time signature 3/4', 'Time signature 12/8']);
+    await page.screenshot({ path: '/tmp/openchordbook-editor-preview.png' });
     await page.locator('[data-editor-view="write"]').click();
     assert.equal(await page.locator('#editor-chords').inputValue(), source);
-    await page.screenshot({ path: '/tmp/jazz4all-editor-mobile.png' });
+    await page.screenshot({ path: '/tmp/openchordbook-editor-mobile.png' });
     // Switching tabs or Android Back preserves the draft; Discard guards it.
     await page.locator('#tab-create').focus();
     await page.locator('#tab-create').press('Home');
     assert.equal(await page.locator('#tab-library').getAttribute('aria-selected'), 'true');
     await page.locator('#tab-library').press('End');
     assert.equal(await page.locator('#tab-create').getAttribute('aria-selected'), 'true');
-    await page.evaluate(() => window.jazz4allBack());
+    await page.evaluate(() => window.openchordbookBack());
     await hidden('#chart-editor');
     await page.locator('#tab-create').click();
     page.once('dialog', (dialog) => dialog.dismiss());
@@ -107,12 +107,12 @@ assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
     assert.equal(created.chartSource.meter, '4/4');
     assert.deepEqual(created.folderIds, [folder]);
     const before = await page.locator('#chart-container').textContent();
-    await page.locator('#btn-chart-tools').click();
-    assert.equal(await page.locator('#chart-tools-dialog').evaluate((e) => getComputedStyle(e, '::backdrop').backdropFilter), 'none');
     await page.locator('#btn-transpose-up').click();
     assert.notEqual(await page.locator('#chart-container').textContent(), before);
     assert.equal(await page.locator('#chart-key').textContent(), 'Db');
-    await page.screenshot({ path: '/tmp/jazz4all-settings-clear.png' });
+    await page.locator('#btn-chart-tools').click();
+    assert.equal(await page.locator('#chart-tools-dialog').evaluate((e) => getComputedStyle(e, '::backdrop').backdropFilter), 'none');
+    await page.screenshot({ path: '/tmp/openchordbook-settings-clear.png' });
     await page.getByRole('button', { name: 'Back to chart', exact: true }).click();
     // Updating a chart keeps the ID and all folder memberships.
     const other = await page.evaluate(async (id) => {

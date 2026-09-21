@@ -1,6 +1,33 @@
 # Changelog
 
-## 1.12 — public release candidate
+## 1.17 — public release candidate
+
+- Restore traditional music-notation numerals for time signatures, including multi-digit meters.
+- Keep dedicated space between barlines and chords, with matching typography in the reader and editor preview.
+- Update reader and preview screenshots.
+
+## 1.15 — time-signature spacing
+
+- Time signatures have dedicated space after the opening barline, with aligned digits for imported and authored meters.
+- Row spacing and automatic fitting account for meter width, keeping adjacent chords clear.
+- Dense rows scroll at the minimum size; charts reopen at their left edge.
+- Updated reader and editor-preview screenshots.
+
+## 1.14 — automatic chart sizing
+
+- Charts open at a default size and shrink to fit the available screen, stopping at a readable minimum.
+- Adjustable default and minimum sizes, remembered offline with immediate preview.
+- Short charts keep the default size; oversized charts scroll. Manual sizing applies to the current tune.
+- Refit on rotation, font loading and transposition; Fit restores automatic sizing.
+
+## 1.13 — live reader controls
+
+- Persistent bottom controls for previous/next tune, chart size, fit and transposition.
+- Controls remain visible while scrolling and keep the chart unobstructed.
+- Matching Android and web layouts, including small phones and landscape.
+- Updated reader screenshot and usage documentation.
+
+## 1.12 — initial public source
 
 - Full-screen offline reader with transposition, chart sizing and day/night themes.
 - Chart authoring with previews, named sections, repeat bars and mixed meters.

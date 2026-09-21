@@ -21,14 +21,14 @@ runs these groups, stopping on a failure:
 | --- | --- |
 | `tests/tooling.py` / `npm run check` | Static export, private-file boundaries and documentation links |
 | `tests/unit/` / `npm run test:unit` | Chord compilation, import/export round trips, limits and native bridge lifecycle |
-| `tests/browser/` / `npm run test:browser` | Phone/desktop UI, folders, editor, import/export files, download failures, injection and offline notices |
+| `tests/browser/` / `npm run test:browser` | Phone/desktop UI, chart fitting, meter spacing and size preferences, folders, editor, import/export files, download failures, injection and offline notices |
 | `tests/native/` / `npm run test:native` | JVM-only network policy, redirects, limits, cancellation, deadlines and file export bounds |
 
 Browser cases mock external responses and do not download community repertoire.
 Screenshots written to the temporary directory contain synthetic charts only.
 
 Individual browser scripts can run against an existing preview by setting
-`JAZZ4ALL_URL` to a localhost URL. `PLAYWRIGHT_MODULE` can point to an existing
+`OPENCHORDBOOK_URL` to a localhost URL. `PLAYWRIGHT_MODULE` can point to an existing
 Playwright installation; `BROWSER_EXECUTABLE` can point to a Chromium binary.
 The runner supplies its own URL, ignoring any existing preview's port.
 
@@ -59,7 +59,7 @@ Start a test emulator, find its serial with `adb devices`, and replace
 ./gradlew assembleDebug assembleDebugAndroidTest
 adb -s EMULATOR_SERIAL install -r app/build/outputs/apk/debug/app-debug.apk
 adb -s EMULATOR_SERIAL install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-adb -s EMULATOR_SERIAL shell am instrument -w com.jazz4all.android.securitytest.test/com.jazz4all.android.SecurityInstrumentation
+adb -s EMULATOR_SERIAL shell am instrument -w io.github.openchordbook.securitytest.test/io.github.openchordbook.SecurityInstrumentation
 ```
 
 Require **PASS** in the runner output; adb's process exit status alone is not
@@ -72,8 +72,8 @@ not save these collections in the production app.
 After testing, remove only the isolated packages if desired:
 
 ```sh
-adb -s EMULATOR_SERIAL uninstall com.jazz4all.android.securitytest.test
-adb -s EMULATOR_SERIAL uninstall com.jazz4all.android.securitytest
+adb -s EMULATOR_SERIAL uninstall io.github.openchordbook.securitytest.test
+adb -s EMULATOR_SERIAL uninstall io.github.openchordbook.securitytest
 ```
 
 The workflow does not automatically run live-network emulator tests. Trigger

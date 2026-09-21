@@ -1,10 +1,10 @@
 # F-Droid packaging
 
-Application ID: `com.jazz4all.android` · License: `GPL-3.0-or-later`
+Application ID: `io.github.openchordbook` · License: `GPL-3.0-or-later`
 
-[metadata/com.jazz4all.android.yml](metadata/com.jazz4all.android.yml) is the
-submission recipe for https://github.com/AlexandreCampo/jazz4all, candidate
-`v1.12` / versionCode 13. The tag and a successful public-source build must
+[metadata/io.github.openchordbook.yml](metadata/io.github.openchordbook.yml) is the
+submission recipe for https://github.com/AlexandreCampo/OpenChordBook, candidate
+`v1.17` / versionCode 18. The tag and a successful public-source build must
 exist before submission. Inclusion is not approved by the presence of this file.
 
 ## Eligibility and review points
@@ -41,12 +41,12 @@ publication; switching signing keys later is disruptive.
 
 ## Submit the recipe
 
-1. Review, commit and publish the source with the `v1.12` tag. Follow
+1. Review, commit and publish the source with the `v1.17` tag. Follow
    [the release checklist](../../docs/releases.md). Confirm that the permanent
    application ID is unique and uses a namespace appropriate for the project.
 2. Fork `https://gitlab.com/fdroid/fdroiddata` under your GitLab account and clone
-   that fork separately. Create a `com.jazz4all.android` branch.
-3. Copy this repository's `packaging/fdroid/metadata/com.jazz4all.android.yml`
+   that fork separately. Create a `io.github.openchordbook` branch.
+3. Copy this repository's `packaging/fdroid/metadata/io.github.openchordbook.yml`
    into the fork's `metadata/` directory. Store descriptions/screenshots remain
    in this app repository under `fastlane/metadata/android/en-US/`.
 4. Install current fdroidserver or use the official buildserver environment
@@ -54,10 +54,10 @@ publication; switching signing keys later is disruptive.
 
 ```sh
 fdroid readmeta
-fdroid rewritemeta com.jazz4all.android
-fdroid checkupdates --allow-dirty com.jazz4all.android
-fdroid lint com.jazz4all.android
-fdroid build --latest com.jazz4all.android
+fdroid rewritemeta io.github.openchordbook
+fdroid checkupdates --allow-dirty io.github.openchordbook
+fdroid lint io.github.openchordbook
+fdroid build --latest io.github.openchordbook
 ```
 
 5. Fix errors and inspect the complete build log. AGP 9.4.1 / Gradle 9.7.1 /
@@ -86,9 +86,9 @@ index signing and update availability. Follow the
    Keep its generated config and repository key private and securely backed up.
 2. Set the public repo URL/name/description. [config.example.yml](config.example.yml)
    shows those public fields; preserve the signing settings created by `fdroid init`.
-3. Copy the signed APK to `repo/com.jazz4all.android_13.apk`. Copy this app's
-   recipe to `metadata/com.jazz4all.android.yml`, and its fastlane `en-US` folder
-   to `metadata/com.jazz4all.android/en-US` in the private work directory.
+3. Copy the signed APK to `repo/io.github.openchordbook_18.apk`. Copy this app's
+   recipe to `metadata/io.github.openchordbook.yml`, and its fastlane `en-US` folder
+   to `metadata/io.github.openchordbook/en-US` in the private work directory.
 4. Run `fdroid update` and upload **only `repo/`** to the configured HTTPS URL.
 5. Share the repository URL and signing fingerprint/QR code. Add it in an F-Droid
    client and test first installation and a same-key update.

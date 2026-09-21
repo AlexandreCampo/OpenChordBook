@@ -37,15 +37,18 @@ for (const [index, original] of [raw, authored].entries()) {
 }
 assert.deepEqual(playlist.songs[1]._chartSource, source);
 assert.deepEqual(playlist.songs[1].chartAnnotations, authored.chartAnnotations);
+const compatible = parsePlaylist(file.text.replace('id="openchordbook-charts"', 'id="jazz4all-charts"'));
+assert.deepEqual(compatible.songs[1]._chartSource, source);
+assert.deepEqual(compatible.songs[1].chartAnnotations, authored.chartAnnotations);
 assert.throws(() => parsePlaylist(file.text.replace('"index":1', '"index":99')), /position/);
-assert.throws(() => parsePlaylist(file.text.replace('"version":1,"charts"', '"version":2,"charts"')), /Invalid jazz4all/);
+assert.throws(() => parsePlaylist(file.text.replace('"version":1,"charts"', '"version":2,"charts"')), /Invalid OpenChordBook/);
 assert.throws(() => parsePlaylist(file.text.replace('"meter":"4/4"', '"meter":"0/4"')), /whole numbers|time signature/);
 assert.throws(() => createPlaylistFile([], 'Empty'), /1 and 2000/);
 assert.throws(() => createPlaylistFile(Array(2001).fill({ raw })), /1 and 2000/);
 assert.throws(() => createPlaylistFile([{ raw: { ...raw, music: 'x'.repeat(16385) } }]), /Chart/);
 assert.throws(() => createPlaylistFile([{ raw: authored, chartSource: { ...source, text: 'C' } }]), /does not match/);
 assert.equal(exportFilename('../../a/b:c?'), '-..-a-b-c-.html');
-assert.equal(exportFilename(' ... '), 'jazz4all.html');
+assert.equal(exportFilename(' ... '), 'openchordbook.html');
 const folders = [{ id: 'a', parentId: null }, { id: 'b', parentId: 'a' }, { id: 'c', parentId: 'b' }, { id: 'other', parentId: null }];
 const songs = [{ id: 1, folderIds: ['a', 'b'] }, { id: 2, folderIds: ['c'] }, { id: 3, folderIds: ['other'] }, { id: 4, folderIds: [] }];
 assert.deepEqual(songsInFolder(songs, folders, 'a').map((s) => s.id), [1, 2]);

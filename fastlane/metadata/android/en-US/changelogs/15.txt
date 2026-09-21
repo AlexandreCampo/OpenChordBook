@@ -1,0 +1,1 @@
+Charts open at a comfortable default size and shrink to fit the available screen. Set your default and minimum sizes in Chart settings. Long charts remain readable and scroll when needed. Manual size changes apply to the current tune; Fit restores automatic sizing.

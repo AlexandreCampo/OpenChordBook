@@ -19,7 +19,7 @@ from web_assets import PublicAssetHandler, public_files
 
 class RepositoryTests(unittest.TestCase):
     def test_export_includes_offline_assets_and_excludes_development_files(self):
-        with tempfile.TemporaryDirectory(prefix="jazz4all-web-") as directory:
+        with tempfile.TemporaryDirectory(prefix="openchordbook-web-") as directory:
             output = Path(directory) / "public"
             subprocess.run([sys.executable, str(ROOT / "scripts/export-web.py"), str(output)], check=True)
             actual = {p.relative_to(output).as_posix() for p in output.rglob("*") if p.is_file()}

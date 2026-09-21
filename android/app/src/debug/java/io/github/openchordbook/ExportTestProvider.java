@@ -1,4 +1,4 @@
-package com.jazz4all.android;
+package io.github.openchordbook;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

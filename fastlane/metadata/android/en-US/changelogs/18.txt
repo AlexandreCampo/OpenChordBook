@@ -1,0 +1,1 @@
+Read, write and organize chord charts offline. Automatic chart fitting, live transposition and font controls, nested folders, playlist import and export, and music-notation time signatures with clear spacing.

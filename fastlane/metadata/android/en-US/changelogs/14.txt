@@ -1,0 +1,1 @@
+Live controls at the bottom of each chart: previous/next tune, chart size and transposition. Controls stay visible while scrolling without covering the sheet. Available on Android and the web.

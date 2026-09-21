@@ -5,18 +5,18 @@ Categories:
   - Music Practice Tool
 License: GPL-3.0-or-later
 AuthorName: Alexandre Campo
-SourceCode: https://github.com/AlexandreCampo/jazz4all
-IssueTracker: https://github.com/AlexandreCampo/jazz4all/issues
+SourceCode: https://github.com/AlexandreCampo/OpenChordBook
+IssueTracker: https://github.com/AlexandreCampo/OpenChordBook/issues
 
-Name: jazz4all
+Name: OpenChordBook
 
 RepoType: git
-Repo: https://github.com/AlexandreCampo/jazz4all.git
+Repo: https://github.com/AlexandreCampo/OpenChordBook.git
 
 Builds:
-  - versionName: '1.12'
-    versionCode: 13
-    commit: v1.12
+  - versionName: '1.17'
+    versionCode: 18
+    commit: v1.17
     subdir: android/app
     gradle:
       - yes
@@ -36,5 +36,5 @@ MaintainerNotes: |-
 
 AutoUpdateMode: Version v%v
 UpdateCheckMode: Tags ^v[0-9]+\.[0-9]+$
-CurrentVersion: '1.12'
-CurrentVersionCode: 13
+CurrentVersion: '1.17'
+CurrentVersionCode: 18

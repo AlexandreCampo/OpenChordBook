@@ -1,4 +1,4 @@
-jazz4all — an open chord book
+OpenChordBook — an open chord book
 Copyright (C) 2026 Alexandre Campo
 SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-This notice applies to original jazz4all code, documentation, icons and
+This notice applies to original OpenChordBook code, documentation, icons and
 store screenshots. Third-party components retain their own copyright
 and license terms; see THIRD_PARTY_NOTICES.md. Imported charts remain
 the property of their respective rightsholders and are not relicensed

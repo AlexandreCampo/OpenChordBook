@@ -1,12 +1,12 @@
 // Copyright (C) 2026 Alexandre Campo
 // SPDX-License-Identifier: GPL-3.0-or-later
-// jazz4all — service worker
+// OpenChordBook — service worker
 // Strategy: cache-first for the app shell. Songs live in IndexedDB.
 // Only same-origin GETs are intercepted — never proxy or cache anything
 // cross-origin. Explicit playlist downloads are stored in IndexedDB instead.
 
-const VERSION = 'v23';
-const CACHE = `jazz4all-${VERSION}`;
+const VERSION = 'v29';
+const CACHE = `openchordbook-${VERSION}`;
 
 const APP_SHELL = [
   './',
@@ -24,6 +24,7 @@ const APP_SHELL = [
 
   './manifest.webmanifest',
   './src/app.js',
+  './src/chart-sizing.js',
   './src/native.js',
   './src/chart-safety.js',
   './src/storage.js',

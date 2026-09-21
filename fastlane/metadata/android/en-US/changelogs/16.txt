@@ -1,0 +1,1 @@
+Clearer time signatures with dedicated space between the opening barline and chords. Imported and authored meters share aligned digits, including 12/8 and 11/16. Row spacing and automatic fitting account for their width. Dense charts remain readable and scroll when needed.

@@ -1,7 +1,7 @@
 // Isolated desktop browser, synthetic exports and mocked network failures.
 const assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const base = process.env.JAZZ4ALL_URL || 'http://127.0.0.1:8001';
+const base = process.env.OPENCHORDBOOK_URL || 'http://127.0.0.1:8001';
 assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
 const exportFile = (title, name) => `<a href="irealb://${encodeURIComponent(`${title}=Test Composer==Swing=C==1r34LbKcu7{C |A-7 |D-7 |G7 Z}=Swing=120=3===${name}`)}">Import</a>`;
 (async () => {
@@ -81,13 +81,56 @@ const exportFile = (title, name) => `<a href="irealb://${encodeURIComponent(`${t
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     }
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.screenshot({ path: '/tmp/jazz4all-desktop-discover.png' });
+    await page.screenshot({ path: '/tmp/openchordbook-desktop-discover.png' });
     await page.locator('#tab-create').click();
     page.once('dialog', (d) => d.accept()); await page.locator('#btn-editor-close').click();
     await page.locator('#btn-close-library').click();
     await page.evaluate(() => navigator.serviceWorker.ready); await context.setOffline(true); await page.reload();
     await page.locator('#chart-container irr-chord').first().waitFor({ state: 'visible' });
     assert.equal((await songs()).length, 2);
+    // Reader controls work directly, including offline, and keep the chosen queue.
+    await page.locator('#btn-library').click();
+    const firstTitle = await page.locator('.song-row .song-list-title').first().textContent();
+    await page.locator('.song-row').first().click();
+    await page.waitForFunction(title => document.getElementById('chart-title').textContent === title, firstTitle);
+    await page.locator('#btn-transpose-up').click();
+    assert.equal(await page.locator('#chart-key').textContent(), 'Db');
+    await page.locator('#btn-transpose-down').click();
+    assert.equal(await page.locator('#chart-key').textContent(), 'C');
+    await page.locator('#btn-transpose-down').click();
+    await page.locator('#transpose-display').click();
+    assert.equal(await page.locator('#chart-key').textContent(), 'C');
+    const initialSize = await page.locator('#chart-container').evaluate(e => parseFloat(getComputedStyle(e).fontSize));
+    await page.locator('#btn-zoom-in').click();
+    assert.ok(await page.locator('#chart-container').evaluate(e => parseFloat(getComputedStyle(e).fontSize)) > initialSize);
+    await page.locator('#btn-zoom-out').click();
+    assert.equal(await page.locator('#chart-container').evaluate(e => parseFloat(getComputedStyle(e).fontSize)), initialSize);
+    await page.locator('#btn-zoom-in').click();
+    await page.locator('#btn-next').click();
+    await page.waitForFunction(title => document.getElementById('chart-title').textContent !== title, firstTitle);
+    assert.equal(await page.locator('#btn-zoom-reset').textContent(), 'Fit');
+    await page.locator('#btn-prev').click();
+    await page.waitForFunction(title => document.getElementById('chart-title').textContent === title, firstTitle);
+    await page.locator('#btn-zoom-reset').click();
+    assert.equal(await page.locator('#btn-zoom-reset').textContent(), 'Fit');
+    for (const [width, height] of [[1440, 1000], [768, 1024], [393, 851], [360, 740], [320, 640], [851, 393]]) {
+      await page.setViewportSize({ width, height });
+      const bar = await page.locator('#bottombar').boundingBox();
+      const viewport = await page.locator('#viewport').boundingBox();
+      assert.ok(Math.abs(bar.y + bar.height - height) < 1, 'Controls stay at the bottom');
+      assert.ok(bar.height <= 66, 'Controls leave room for the sheet');
+      assert.ok(viewport.y + viewport.height <= bar.y, 'Controls do not cover the chart');
+      for (const button of await page.locator('#bottombar button').all()) {
+        const box = await button.boundingBox();
+        assert.ok(box.x >= 0 && box.x + box.width <= width && box.height >= 44, 'All buttons fit and remain tappable');
+      }
+      await page.locator('#viewport').evaluate(e => { e.scrollTop = e.scrollHeight; });
+      assert.equal((await page.locator('#bottombar').boundingBox()).y, bar.y);
+    }
+    await page.setViewportSize({ width: 393, height: 851 });
+    await page.locator('#viewport').evaluate(e => { e.scrollTop = 0; });
+    await page.screenshot({ path: '/tmp/openchordbook-live-controls-mobile.png' });
+    assert.equal(await page.locator('dialog[open]').count(), 0);
     assert.deepEqual(errors, []);
     console.log('PASS: no automatic downloads, desktop/mobile navigation, Chang downloads, cancellation, cache, retry, folders, draft retention, full-width reading and offline charts.');
   } finally { await browser.close(); }

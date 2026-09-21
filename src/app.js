@@ -1,8 +1,9 @@
 // Copyright (C) 2026 Alexandre Campo
 // SPDX-License-Identifier: GPL-3.0-or-later
-// jazz4all — one tabbed workspace and a clear page on the music stand.
+// OpenChordBook — one tabbed workspace and a clear page on the music stand.
 import './native.js';
 import { renderSong } from './viewer.js';
+import { initChartSizing, applyChartSize, adjustChartSize } from './chart-sizing.js';
 import { readPlaylistFile, readPlaylistURI, savePlaylist } from './import.js';
 import { pickFolder } from './folders.js';
 import { getSong, getMeta, setMeta, requestPersistentStorage, wipeAll } from './storage.js';
@@ -12,7 +13,7 @@ import * as discover from './discover.js';
 import { initEditor, openEditor } from './editor.js';
 
 const $ = (id) => document.getElementById(id);
-const state = { currentId: null, currentSong: null, transpose: 0, zoomOffset: 0, loadRequest: 0, queue: [] };
+const state = { currentId: null, currentSong: null, transpose: 0, loadRequest: 0, queue: [] };
 const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
 let explicitTheme = null;
 
@@ -32,16 +33,7 @@ function applyTheme() {
   $('btn-reader-theme').textContent = label;
   $('btn-theme').querySelector('use').setAttribute('href', theme === 'dark' ? '#i-sun' : '#i-moon');
   document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#20241f' : '#f4f1e9';
-  window.jazz4allNative?.setAppearance?.(theme);
-}
-
-function applyZoom() {
-  // Size to the actual chart, including when the sidebar or stage view changes.
-  const width = Math.max(260, Math.min(1400, $('chart-container').clientWidth));
-  const base = Math.round((width - 280) * .014 + 9);
-  const pt = Math.max(6, Math.min(48, base + state.zoomOffset));
-  $('chart-container').style.fontSize = `${pt}pt`;
-  $('btn-zoom-reset').textContent = state.zoomOffset === 0 ? 'Fit' : `${state.zoomOffset > 0 ? '+' : ''}${state.zoomOffset}`;
+  window.openchordbookNative?.setAppearance?.(theme);
 }
 
 let nativeReading = false;
@@ -50,7 +42,7 @@ function updateReadingMode() {
     && !document.querySelector('dialog[open]') && !document.body.classList.contains('is-creating');
   if (reading !== nativeReading) {
     nativeReading = reading;
-    window.jazz4allNative?.setReadingMode?.(reading);
+    window.openchordbookNative?.setReadingMode?.(reading);
   }
 }
 
@@ -68,7 +60,7 @@ function setStageView(enabled) {
   $('btn-focus').setAttribute('aria-label', enabled ? 'Leave stage view' : 'Enter stage view');
   $('btn-focus').title = enabled ? 'Leave stage view (F or Escape)' : 'Stage view (F)';
   library.syncLayout();
-  applyZoom();
+  applyChartSize();
 }
 
 function showEmpty() {
@@ -80,8 +72,8 @@ function showEmpty() {
   $('chart-sheet').hidden = $('bottombar').hidden = $('btn-focus').hidden = $('btn-chart-tools').hidden = true;
   $('empty-state').hidden = false;
   $('view-label').textContent = 'an open chord book';
-  $('song-title').textContent = 'jazz4all';
-  document.title = 'jazz4all — an open chord book';
+  $('song-title').textContent = 'OpenChordBook';
+  document.title = 'OpenChordBook — an open chord book';
   setStageView(false);
 }
 
@@ -105,35 +97,30 @@ async function loadSong(id, preserveQueue = false) {
   $('chart-title').textContent = song.title;
   $('chart-composer').textContent = song.composer || 'Composer not listed';
   $('chart-style').textContent = [song.style || 'Chord chart', song.bpm ? `♩ ${song.bpm}` : ''].filter(Boolean).join('  ·  ');
-  document.title = `${song.title} — jazz4all`;
+  document.title = `${song.title} — OpenChordBook`;
   $('empty-state').hidden = true;
   $('chart-sheet').hidden = $('bottombar').hidden = $('btn-focus').hidden = $('btn-chart-tools').hidden = false;
-  renderCurrent();
+  renderCurrent({ resetSize: true });
   $('viewport').scrollTop = 0;
+  $('viewport').scrollLeft = 0;
   library.setSelected(id);
   updateNavigation();
   updateReadingMode();
   await setMeta('lastSongId', id);
 }
 
-function renderCurrent() {
+function renderCurrent({ resetSize = false } = {}) {
   if (!state.currentSong) return;
   try {
     const rendered = renderSong(state.currentSong, $('chart-container'), { transpose: state.transpose });
     $('chart-key').textContent = rendered.key || state.currentSong.key || '—';
-    applyZoom();
+    applyChartSize({ reset: resetSize });
   } catch (err) {
     console.error(err);
     $('chart-container').textContent = 'This chart could not be displayed. Try importing another version of the tune.';
     $('chart-key').textContent = state.currentSong.key || '—';
     toast(`Could not display the chart: ${err.message}`, 5000);
   }
-}
-
-async function setZoomOffset(delta) {
-  state.zoomOffset = delta === null ? 0 : Math.max(-12, Math.min(36, state.zoomOffset + delta));
-  applyZoom();
-  await setMeta('zoomOffset', state.zoomOffset);
 }
 
 function setTranspose(delta) {
@@ -149,7 +136,6 @@ function navigate(direction) {
   if (!state.queue.length) return;
   const index = state.queue.indexOf(state.currentId);
   const next = (index + direction + state.queue.length) % state.queue.length;
-  $('chart-tools-dialog').close();
   loadSong(state.queue[next], true);
 }
 
@@ -204,7 +190,7 @@ function wireUI() {
   $('btn-new-chart-empty').addEventListener('click', () => library.openDrawer('create'));
   library.onEdit(editChart);
   document.addEventListener('editorclose', () => library.activateTab('library'));
-  window.jazz4allBack = () => {
+  window.openchordbookBack = () => {
     const dialog = [...document.querySelectorAll('dialog[open]')].at(-1);
     if (dialog) {
       if (dialog.dispatchEvent(new Event('cancel', { cancelable: true }))) dialog.close();
@@ -266,12 +252,6 @@ function wireUI() {
   $('transpose-display').addEventListener('click', () => setTranspose(null));
   $('btn-prev').addEventListener('click', () => navigate(-1));
   $('btn-next').addEventListener('click', () => navigate(1));
-  $('btn-zoom-in').addEventListener('click', () => setZoomOffset(1));
-  $('btn-zoom-out').addEventListener('click', () => setZoomOffset(-1));
-  $('btn-zoom-reset').addEventListener('click', () => setZoomOffset(null));
-  new ResizeObserver(applyZoom).observe($('chart-sheet'));
-
-
   const fileInput = $('file-input');
   const importDialog = $('import-dialog');
   $('btn-import-file').addEventListener('click', () => fileInput.click());
@@ -363,7 +343,7 @@ function wireUI() {
     const actions = {
       ArrowRight: () => navigate(1), ArrowLeft: () => navigate(-1),
       '+': () => setTranspose(1), '=': () => setTranspose(1), '-': () => setTranspose(-1),
-      ']': () => setZoomOffset(1), '[': () => setZoomOffset(-1), '0': () => setZoomOffset(null),
+      ']': () => adjustChartSize(1), '[': () => adjustChartSize(-1), '0': () => applyChartSize({ reset: true }),
       f: () => setStageView(!document.body.classList.contains('stage-view')),
     };
     if (actions[event.key]) { event.preventDefault(); actions[event.key](); }
@@ -374,10 +354,9 @@ function wireUI() {
 async function init() {
   applyTheme();
   wireUI();
-  const [theme, zoom, lastId] = await Promise.all([getMeta('theme'), getMeta('zoomOffset'), getMeta('lastSongId')]);
+  const [theme, lastId] = await Promise.all([getMeta('theme'), getMeta('lastSongId'), initChartSizing()]);
   explicitTheme = ['light', 'dark'].includes(theme) ? theme : null;
   applyTheme();
-  if (typeof zoom === 'number') state.zoomOffset = zoom;
   await library.refresh();
   await library.restoreView();
   const songs = library.getAllSongs();
