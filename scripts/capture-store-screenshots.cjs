@@ -13,7 +13,10 @@ assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname));
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   const directory = path.resolve(__dirname, '../fastlane/metadata/android/en-US/images/phoneScreenshots');
-  const shot = name => page.screenshot({ path: path.join(directory, name + '.png'), animations: 'disabled' });
+  const shot = async name => {
+    await page.evaluate(() => document.activeElement?.blur());
+    await page.screenshot({ path: path.join(directory, name + '.png'), animations: 'disabled' });
+  };
   try {
     await page.goto(base);
     await page.locator('#empty-state').waitFor();

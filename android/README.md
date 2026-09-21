@@ -80,7 +80,7 @@ The shell adds playlist downloads, Android's import/save file pickers,
 full-screen reading and Back navigation to the web app. Export uses the system
 Save as window and needs no storage permission.
 
-The versioned asset path (`/assets/v18/web/` for versionCode 18) avoids stale
+The versioned asset path (`/assets/v19/web/` for versionCode 19) avoids stale
 service-worker scopes while retaining the IndexedDB origin. Update it together
 with the version when releasing changes. Gradle's generated
 `app/src/main/assets/web/` directory must never be edited or committed.

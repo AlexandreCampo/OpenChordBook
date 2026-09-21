@@ -5,7 +5,7 @@
 // Only same-origin GETs are intercepted — never proxy or cache anything
 // cross-origin. Explicit playlist downloads are stored in IndexedDB instead.
 
-const VERSION = 'v29';
+const VERSION = 'v30';
 const CACHE = `openchordbook-${VERSION}`;
 
 const APP_SHELL = [

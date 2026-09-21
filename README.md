@@ -1,7 +1,5 @@
 # OpenChordBook
 
-**an open chord book**
-
 Read, write and organize chord charts on your phone, tablet or computer.
 OpenChordBook puts the sheet first: a full-screen reading view, transposition
 without hiding the chords, and a library that stays on your device.
@@ -13,6 +11,11 @@ You can also write your own charts or import playlists.
 <p>
   <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2-reader.png" width="240" alt="A full-screen practice chart in the reader">
   <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1-library.png" width="240" alt="The library with a folder path, tune search and saved practice charts">
+</p>
+
+<p>
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4-create.png" width="240" alt="Create view with chord entry, sections and time signatures">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5-preview.png" width="240" alt="Chart preview in the Create view">
 </p>
 
 ## What it does

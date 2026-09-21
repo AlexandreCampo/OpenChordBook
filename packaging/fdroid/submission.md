@@ -6,7 +6,7 @@ transposition, nested folders, named sections, mixed meters and repeat bars.
 - Maintainer: Alexandre Campo
 - Source: https://github.com/AlexandreCampo/OpenChordBook
 - Issues: https://github.com/AlexandreCampo/OpenChordBook/issues
-- Candidate tag: `v1.17` (versionCode 18)
+- Candidate tag: `v1.18` (versionCode 19)
 - License: GPL-3.0-or-later; third-party MIT, OFL and Apache notices preserved
 - Build/CI result: **PENDING — replace with the successful public-tag build log**
 - Signing: standard F-Droid signing; no reproducibility claim

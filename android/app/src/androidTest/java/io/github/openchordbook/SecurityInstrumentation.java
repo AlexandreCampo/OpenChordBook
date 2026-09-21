@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public final class SecurityInstrumentation extends Instrumentation {
     private WebView web;
     private int checks;
-    private static final String START = "https://appassets.androidplatform.net/assets/v18/web/index.html";
+    private static final String START = "https://appassets.androidplatform.net/assets/v19/web/index.html";
     @Override public void onCreate(Bundle args) { super.onCreate(args); start(); }
     @Override public void onStart() {
         Bundle result = new Bundle();
@@ -48,12 +48,12 @@ public final class SecurityInstrumentation extends Instrumentation {
             // Verify production WebViewClient decisions, including gestures and subframes.
             runOnMainSync(() -> {
                 WebViewClient client = web.getWebViewClient();
-                for (String url : new String[] { "https://appassets.androidplatform.net:444/assets/v18/web/index.html", "https://appassets.androidplatform.net/assets/v18/web/data/catalog.json", "data:text/html,hi", "javascript:alert(1)", "intent://scan/#Intent;scheme=zxing;end", "file:///etc/hosts", "content://contacts/people", "http://example.com/" }) {
+                for (String url : new String[] { "https://appassets.androidplatform.net:444/assets/v19/web/index.html", "https://appassets.androidplatform.net/assets/v19/web/data/catalog.json", "data:text/html,hi", "javascript:alert(1)", "intent://scan/#Intent;scheme=zxing;end", "file:///etc/hosts", "content://contacts/people", "http://example.com/" }) {
                     check(client.shouldOverrideUrlLoading(web, request(url, true, true)), "Block navigation " + url);
                 }
                 check(!client.shouldOverrideUrlLoading(web, request(START, true, true)), "Allow entry document");
                 check(client.shouldOverrideUrlLoading(web, request(START, false, true)), "Block frame navigation");
-                for (String url : new String[] { "https://example.com/", "https://appassets.androidplatform.net:444/assets/v18/web/index.html", "https://appassets.androidplatform.net/assets/v18/web/%2e%2e/catalog.json", "https://appassets.androidplatform.net/anything" }) {
+                for (String url : new String[] { "https://example.com/", "https://appassets.androidplatform.net:444/assets/v19/web/index.html", "https://appassets.androidplatform.net/assets/v19/web/%2e%2e/catalog.json", "https://appassets.androidplatform.net/anything" }) {
                     WebResourceResponse response = client.shouldInterceptRequest(web, request(url, false, false));
                     check(response != null && response.getStatusCode() == 403, "Block resource fallback " + url);
                 }
@@ -83,7 +83,7 @@ public final class SecurityInstrumentation extends Instrumentation {
             js("window.offlineReady=false; navigator.serviceWorker.ready.then(()=>window.offlineReady=true); true");
             await("window.offlineReady === true");
             checks++;
-            js("window.chartResult=''; (async()=>{const {parsePlaylist,savePlaylist}=await import('https://appassets.androidplatform.net/assets/v18/web/src/import.js'); const s=await import('https://appassets.androidplatform.net/assets/v18/web/src/storage.js'); const {renderSong}=await import('https://appassets.androidplatform.net/assets/v18/web/src/viewer.js'); const p=parsePlaylist('irealb://'+encodeURIComponent('Isolated test=Tester==Swing=C==[C |G7 Z==120=3')); const saved=await savePlaylist(p,null); const record=await s.getSong(saved.songIds[0]); const container=document.createElement('div'); renderSong(record,container,{transpose:2}); window.chartResult=container.querySelectorAll('irr-chord').length > 0 ? 'PASS':'FAIL';})().catch(e=>window.chartResult=e.message); true");
+            js("window.chartResult=''; (async()=>{const {parsePlaylist,savePlaylist}=await import('https://appassets.androidplatform.net/assets/v19/web/src/import.js'); const s=await import('https://appassets.androidplatform.net/assets/v19/web/src/storage.js'); const {renderSong}=await import('https://appassets.androidplatform.net/assets/v19/web/src/viewer.js'); const p=parsePlaylist('irealb://'+encodeURIComponent('Isolated test=Tester==Swing=C==[C |G7 Z==120=3')); const saved=await savePlaylist(p,null); const record=await s.getSong(saved.songIds[0]); const container=document.createElement('div'); renderSong(record,container,{transpose:2}); window.chartResult=container.querySelectorAll('irr-chord').length > 0 ? 'PASS':'FAIL';})().catch(e=>window.chartResult=e.message); true");
             await("window.chartResult.length > 0");
             check("\"PASS\"".equals(js("window.chartResult")), "Chart import/render: " + js("window.chartResult"));
             // Exercise the real message channel, activity result and file writer.
@@ -96,7 +96,7 @@ public final class SecurityInstrumentation extends Instrumentation {
             check("\"cancelled\"".equals(js("window.exportResult")) && cancelledPicker.getHits() == 1, "Save picker cancellation");
             removeMonitor(cancelledPicker);
             ActivityMonitor savePicker = exportPicker(new ActivityResult(Activity.RESULT_OK, new Intent().setData(exportUri)));
-            js("window.exportResult=''; (async()=>{const s=await import('https://appassets.androidplatform.net/assets/v18/web/src/storage.js'); const {createPlaylistFile}=await import('https://appassets.androidplatform.net/assets/v18/web/src/playlist-export.js'); window.exportText=createPlaylistFile(await s.listSongs(),'Études ♭').text; window.exportResult=await window.openchordbookNative.savePlaylist('Études.html',window.exportText);})().catch(e=>window.exportResult=e.message); true");
+            js("window.exportResult=''; (async()=>{const s=await import('https://appassets.androidplatform.net/assets/v19/web/src/storage.js'); const {createPlaylistFile}=await import('https://appassets.androidplatform.net/assets/v19/web/src/playlist-export.js'); window.exportText=createPlaylistFile(await s.listSongs(),'Études ♭').text; window.exportResult=await window.openchordbookNative.savePlaylist('Études.html',window.exportText);})().catch(e=>window.exportResult=e.message); true");
             await("window.exportResult.length > 0");
             check("\"saved\"".equals(js("window.exportResult")) && savePicker.getHits() == 1, "Export reports success after writing: " + js("window.exportResult") + " (picker hits " + savePicker.getHits() + ")");
             try (java.io.InputStream input = getTargetContext().getContentResolver().openInputStream(exportUri)) {
@@ -125,7 +125,7 @@ public final class SecurityInstrumentation extends Instrumentation {
                 {"jazz-standards-jazz-1460-standards", "1460"}
             };
             for (String[] collection : collections) {
-                js("window.downloadResult=''; window.openchordbookNative.fetchPlaylist(" + JSONObject.quote(collection[0]) + ").then(async text=>{const {parsePlaylist}=await import('https://appassets.androidplatform.net/assets/v18/web/src/import.js'); window.downloadResult='songs:'+parsePlaylist(text).songs.length;}).catch(e=>window.downloadResult=e.message); true");
+                js("window.downloadResult=''; window.openchordbookNative.fetchPlaylist(" + JSONObject.quote(collection[0]) + ").then(async text=>{const {parsePlaylist}=await import('https://appassets.androidplatform.net/assets/v19/web/src/import.js'); window.downloadResult='songs:'+parsePlaylist(text).songs.length;}).catch(e=>window.downloadResult=e.message); true");
                 await("window.downloadResult.length > 0", 35000);
                 check(JSONObject.quote("songs:" + collection[1]).equals(js("window.downloadResult")), collection[0] + ": " + js("window.downloadResult"));
             }

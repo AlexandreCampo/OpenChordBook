@@ -37,9 +37,9 @@ public final class NativeSecurityTest {
         rejects(() -> NetworkPolicy.download("https://dl.dropboxusercontent.com/export", "forums.irealpro.com"));
         for (String ip : Arrays.asList("0.0.0.0", "10.0.0.1", "127.0.0.1", "169.254.169.254", "172.16.0.1", "192.168.1.1", "100.64.0.1", "198.18.0.1", "224.0.0.1", "255.255.255.255", "::", "::1", "fe80::1", "fc00::1", "fd00::1", "ff00::1", "::ffff:127.0.0.1")) check(!NetworkPolicy.publicAddress(InetAddress.getByName(ip)));
         for (String ip : Arrays.asList("8.8.8.8", "1.1.1.1", "2606:4700:4700::1111")) check(NetworkPolicy.publicAddress(InetAddress.getByName(ip)));
-        String start="https://appassets.androidplatform.net/assets/v18/web/index.html";
+        String start="https://appassets.androidplatform.net/assets/v19/web/index.html";
         check(NetworkPolicy.appDocument(start)); check(NetworkPolicy.appDocument(start+"#chart"));
-        for (String url : Arrays.asList(start+"?url=evil",start.replace(".net/", ".net:444/"),start.replace("/index.html", "/%2e%2e/secret"),start.replace("/index.html", "/../secret"),start.replace("https", "http"),"https://appassets.androidplatform.net.evil/assets/v18/web/index.html")) check(!NetworkPolicy.appDocument(url));
+        for (String url : Arrays.asList(start+"?url=evil",start.replace(".net/", ".net:444/"),start.replace("/index.html", "/%2e%2e/secret"),start.replace("/index.html", "/../secret"),start.replace("https", "http"),"https://appassets.androidplatform.net.evil/assets/v19/web/index.html")) check(!NetworkPolicy.appDocument(url));
         check(!NetworkPolicy.externalLink("intent://open")); check(!NetworkPolicy.externalLink("http://example.com")); check(NetworkPolicy.externalLink("https://example.com/"));
 
         String uri="irealb://"+URLEncoder.encode("Fixture=Tester==Swing=C==1r34LbKcu7[C Z==120=3===Test book", "UTF-8").replace("+", "%20");

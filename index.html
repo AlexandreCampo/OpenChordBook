@@ -19,7 +19,7 @@
 ">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="no-referrer">
-<title>OpenChordBook — an open chord book</title>
+<title>OpenChordBook</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -46,7 +46,7 @@
 
 <aside id="library-drawer" aria-label="Music library" aria-hidden="true" inert>
   <header class="brand-header">
-    <div class="app-name">OpenChordBook<small>an open chord book</small></div>
+    <div class="app-name">OpenChordBook</div>
     <button id="btn-about" class="text-btn">About</button>
     <button id="btn-close-library" class="icon-btn" aria-label="Close library"><svg><use href="#i-close"/></svg></button>
   </header>
@@ -123,7 +123,7 @@
 <div id="workspace">
   <header id="topbar">
     <button id="btn-library" class="icon-btn" aria-label="Open library" aria-controls="library-drawer" aria-expanded="false" title="Open library"><svg><use href="#i-library"/></svg></button>
-    <div class="topbar-title"><span class="eyebrow" id="view-label">an open chord book</span><h1 id="song-title">OpenChordBook</h1></div>
+    <div class="topbar-title"><h1 id="song-title">OpenChordBook</h1></div>
     <div class="topbar-actions">
       <button id="btn-chart-tools" class="icon-btn" aria-label="Chart settings" title="Chart settings" hidden><svg><use href="#i-tools"/></svg></button>
       <button id="btn-theme" class="icon-btn" aria-label="Switch to night mode" title="Switch to night mode"><svg><use href="#i-moon"/></svg></button>
@@ -133,7 +133,6 @@
 
   <main id="viewport">
     <section id="empty-state" hidden>
-      <div class="welcome-heading"><h2>an open<br><em>chord book</em></h2></div>
       <p class="welcome-description">Open a tune from your library, or import a playlist to get started.</p>
       <div class="welcome-actions">
         <button id="btn-import-empty" class="welcome-action"><span class="action-number">01</span><span class="action-copy"><strong>Import a playlist</strong><span>Import an iRealPro .html playlist or paste a link.</span></span><svg><use href="#i-arrow"/></svg></button>
@@ -161,7 +160,7 @@
 
 <dialog id="about-dialog" aria-labelledby="about-title">
   <div class="dialog-top"><h2 id="about-title">About OpenChordBook</h2><button class="icon-btn" data-close-dialog aria-label="Close about"><svg><use href="#i-close"/></svg></button></div>
-  <p>an open chord book · Version 1.17</p>
+  <p>Version 1.18</p>
   <p>Copyright © 2026 Alexandre Campo</p>
   <p>Free software: you can use, study, share and modify it under the GNU General Public License, version 3 or any later version. Provided without warranty.</p>
   <p>Your library stays on this device. No account, ads, analytics or tracking. Tunes are not packaged; they are downloaded by the user.</p>

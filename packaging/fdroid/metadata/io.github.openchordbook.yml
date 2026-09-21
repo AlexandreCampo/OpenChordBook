@@ -14,9 +14,9 @@ RepoType: git
 Repo: https://github.com/AlexandreCampo/OpenChordBook.git
 
 Builds:
-  - versionName: '1.17'
-    versionCode: 18
-    commit: v1.17
+  - versionName: '1.18'
+    versionCode: 19
+    commit: v1.18
     subdir: android/app
     gradle:
       - yes
@@ -36,5 +36,5 @@ MaintainerNotes: |-
 
 AutoUpdateMode: Version v%v
 UpdateCheckMode: Tags ^v[0-9]+\.[0-9]+$
-CurrentVersion: '1.17'
-CurrentVersionCode: 18
+CurrentVersion: '1.18'
+CurrentVersionCode: 19

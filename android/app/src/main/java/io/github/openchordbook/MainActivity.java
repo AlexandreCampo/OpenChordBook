@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
         webView.requestApplyInsets();
 
         final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
-                .addPathHandler("/assets/v18/", new WebViewAssetLoader.AssetsPathHandler(this))
+                .addPathHandler("/assets/v19/", new WebViewAssetLoader.AssetsPathHandler(this))
                 .build();
 
         WebSettings settings = webView.getSettings();
@@ -131,7 +131,7 @@ public class MainActivity extends Activity {
         settings.setAllowContentAccess(false);
         settings.setMediaPlaybackRequiresUserGesture(true);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
-        settings.setUserAgentString(settings.getUserAgentString() + " openchordbook/1.17");
+        settings.setUserAgentString(settings.getUserAgentString() + " openchordbook/1.18");
         settings.setSupportMultipleWindows(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(false);
 

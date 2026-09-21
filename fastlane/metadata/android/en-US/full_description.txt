@@ -1,5 +1,3 @@
-An open chord book for your music stand.
-
 OpenChordBook reads and edits chord charts, with a full-screen sheet that leaves room for the music. Your library stays on your device. No account, ads, analytics or playback.
 
 • Read charts offline and transpose without hiding the chords

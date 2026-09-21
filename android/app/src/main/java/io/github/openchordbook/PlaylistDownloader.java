@@ -66,7 +66,7 @@ final class PlaylistDownloader {
                 conn.setConnectTimeout(job.remainingMs());
                 conn.setReadTimeout(job.remainingMs());
                 conn.setUseCaches(false);
-                conn.setRequestProperty("User-Agent", "openchordbook-android/1.17 (user-initiated playlist download)");
+                conn.setRequestProperty("User-Agent", "openchordbook-android/1.18 (user-initiated playlist download)");
                 conn.setRequestProperty("Accept-Encoding", "identity");
                 int code = conn.getResponseCode();
                 job.check();

@@ -4,7 +4,7 @@ Application ID: `io.github.openchordbook` · License: `GPL-3.0-or-later`
 
 [metadata/io.github.openchordbook.yml](metadata/io.github.openchordbook.yml) is the
 submission recipe for https://github.com/AlexandreCampo/OpenChordBook, candidate
-`v1.17` / versionCode 18. The tag and a successful public-source build must
+`v1.18` / versionCode 19. The tag and a successful public-source build must
 exist before submission. Inclusion is not approved by the presence of this file.
 
 ## Eligibility and review points
@@ -41,7 +41,7 @@ publication; switching signing keys later is disruptive.
 
 ## Submit the recipe
 
-1. Review, commit and publish the source with the `v1.17` tag. Follow
+1. Review, commit and publish the source with the `v1.18` tag. Follow
    [the release checklist](../../docs/releases.md). Confirm that the permanent
    application ID is unique and uses a namespace appropriate for the project.
 2. Fork `https://gitlab.com/fdroid/fdroiddata` under your GitLab account and clone
@@ -86,7 +86,7 @@ index signing and update availability. Follow the
    Keep its generated config and repository key private and securely backed up.
 2. Set the public repo URL/name/description. [config.example.yml](config.example.yml)
    shows those public fields; preserve the signing settings created by `fdroid init`.
-3. Copy the signed APK to `repo/io.github.openchordbook_18.apk`. Copy this app's
+3. Copy the signed APK to `repo/io.github.openchordbook_19.apk`. Copy this app's
    recipe to `metadata/io.github.openchordbook.yml`, and its fastlane `en-US` folder
    to `metadata/io.github.openchordbook/en-US` in the private work directory.
 4. Run `fdroid update` and upload **only `repo/`** to the configured HTTPS URL.

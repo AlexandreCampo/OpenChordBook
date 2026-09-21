@@ -71,9 +71,8 @@ function showEmpty() {
   $('chart-container').replaceChildren();
   $('chart-sheet').hidden = $('bottombar').hidden = $('btn-focus').hidden = $('btn-chart-tools').hidden = true;
   $('empty-state').hidden = false;
-  $('view-label').textContent = 'an open chord book';
   $('song-title').textContent = 'OpenChordBook';
-  document.title = 'OpenChordBook — an open chord book';
+  document.title = 'OpenChordBook';
   setStageView(false);
 }
 
@@ -93,7 +92,6 @@ async function loadSong(id, preserveQueue = false) {
   state.transpose = 0;
   $('transpose-display').textContent = '0';
   $('song-title').textContent = song.title;
-  $('view-label').textContent = 'ON THE MUSIC STAND';
   $('chart-title').textContent = song.title;
   $('chart-composer').textContent = song.composer || 'Composer not listed';
   $('chart-style').textContent = [song.style || 'Chord chart', song.bpm ? `♩ ${song.bpm}` : ''].filter(Boolean).join('  ·  ');

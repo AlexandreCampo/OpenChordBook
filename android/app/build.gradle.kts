@@ -40,8 +40,8 @@ android {
         minSdk = 24
         targetSdk = 36
         testInstrumentationRunner = "io.github.openchordbook.SecurityInstrumentation"
-        versionCode = 18
-        versionName = "1.17"
+        versionCode = 19
+        versionName = "1.18"
     }
 
     compileOptions {

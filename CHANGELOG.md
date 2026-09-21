@@ -1,6 +1,11 @@
 # Changelog
 
-## 1.17 — public release candidate
+## 1.18 — public release candidate
+
+- Simplify app headers and the welcome screen.
+- Show chord entry and chart preview screenshots in the README.
+
+## 1.17 — chart reader
 
 - Restore traditional music-notation numerals for time signatures, including multi-digit meters.
 - Keep dedicated space between barlines and chords, with matching typography in the reader and editor preview.

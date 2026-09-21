@@ -94,20 +94,15 @@ kbd { font: 11px monospace; border: 1px solid var(--line); padding: 1px 5px; bor
 #topbar { display: flex; align-items: center; gap: 12px; flex-shrink: 0; min-height: 100px; padding: 18px 40px; border-bottom: 1px solid var(--line); }
 #btn-library { display: inline-flex; }
 .topbar-title { flex: 1; min-width: 0; }
-.topbar-title .eyebrow { color: var(--muted); font-size: 9px; letter-spacing: .17em; }
-#song-title { font-size: 15px; font-weight: 400; margin: 5px 0 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#song-title { font-size: 15px; font-weight: 400; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .topbar-actions { display: flex; gap: 4px; }
 #btn-theme { color: var(--muted); }
 #btn-focus[aria-pressed="true"] { color: var(--accent); background: var(--accent-soft); }
 #viewport { position: relative; flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; }
 #empty-state { max-width: 720px; margin: 0 auto; padding: 55px 40px; }
-.welcome-heading { padding: 15px 0 0; align-self: end; }
-.welcome-heading > .eyebrow { display: flex; align-items: center; gap: 9px; font-size: 9px; color: var(--accent); letter-spacing: .12em; white-space: nowrap; }
-.welcome-heading h2 { font: 400 clamp(42px,4.3vw,65px)/1.15 var(--serif); letter-spacing: -.055em; margin: 28px 0 22px; }
-.welcome-heading h2 em { color: var(--accent); font-weight: 400; }
 .welcome-description { color: var(--muted); font-size: 15px; line-height: 1.8; margin: 0; }
 
-.welcome-actions { grid-column: 1 / -1; margin-top: 32px; border-top: 1px solid var(--line); }
+.welcome-actions { margin-top: 32px; border-top: 1px solid var(--line); }
 .welcome-action { display: flex; width: 100%; align-items: center; gap: 22px; padding: 23px 4px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; text-align: left; }
 .action-number { align-self: flex-start; margin-top: 5px; color: var(--accent); font-size: 11px; font-variant-numeric: tabular-nums; }
 .action-copy { flex: 1; display: flex; flex-direction: column; gap: 7px; }
@@ -208,7 +203,7 @@ dialog menu { display: flex; justify-content: flex-end; gap: 8px; padding: 0; ma
 .import-option small { margin-top: 4px; color: var(--muted); font-size: 12px; }
 #toast { position: fixed; bottom: calc(100px + var(--safe-bottom)); left: 50%; transform: translateX(-50%); width: max-content; max-width: min(460px,calc(100vw - 32px)); background: var(--fg); color: var(--surface); padding: 12px 20px; border-radius: 5px; box-shadow: var(--shadow); font-size: 14px; z-index: 100; }
 @media (min-width: 901px) { #scrim { display: none; } #chart-sheet { width: calc(100% - 64px); } }
-@media (max-width: 1200px) and (min-width: 901px) { :root { --sidebar: 310px; } #empty-state { padding: 40px 36px 24px; column-gap: 20px; } .welcome-heading h2 { font-size: 44px; } }
+@media (max-width: 1200px) and (min-width: 901px) { :root { --sidebar: 310px; } #empty-state { padding: 40px 36px 24px; } }
 @media (max-width: 900px) {
   #library-drawer { width: min(390px,100vw); transform: translateX(-100%); transition: transform .22s ease; }
   #library-drawer.open { transform: translateX(0); }
@@ -217,7 +212,6 @@ dialog menu { display: flex; justify-content: flex-end; gap: 8px; padding: 0; ma
   #btn-library { display: inline-flex; }
   #topbar { min-height: 80px; padding: 12px 20px; }
   #empty-state { padding: 44px 48px 24px; max-width: 760px; }
-  .welcome-heading h2 { font-size: 52px; }
   #chart-sheet { margin: 24px; padding: 28px; }
   #toast { left: 50%; }
   .brand-header { min-height: 90px; }
@@ -225,15 +219,10 @@ dialog menu { display: flex; justify-content: flex-end; gap: 8px; padding: 0; ma
 }
 @media (max-width: 600px) {
   #topbar { min-height: 73px; padding: 10px 12px; gap: 9px; }
-  #song-title { font-size: 14px; margin-top: 3px; }
-  .topbar-title .eyebrow { font-size: 8px; letter-spacing: .13em; }
+  #song-title { font-size: 14px; }
   .topbar-actions { gap: 0; }
-  #empty-state { grid-template-columns: minmax(0,1fr) 115px; gap: 0 6px; padding: 32px 26px 24px; align-content: start; }
-  .welcome-heading { padding: 10px 0 0; align-self: center; position: relative; z-index: 1; }
-  .welcome-heading > .eyebrow { font-size: 7px; letter-spacing: .07em; gap: 6px; }
-  .red-rule { width: 15px; }
-  .welcome-heading h2 { font-size: 43px; margin: 23px 0 18px; }
-  .welcome-description { grid-column: 1 / -1; grid-row: 2; font-size: 13px; line-height: 1.9; margin: 18px 0 14px; }
+  #empty-state { padding: 32px 26px 24px; }
+  .welcome-description { font-size: 13px; line-height: 1.9; margin: 0 0 14px; }
   .welcome-actions { margin-top: 12px; }
   .welcome-action { gap: 13px; padding: 24px 0; }
   .action-copy strong { font-size: 19px; }
@@ -248,13 +237,12 @@ dialog menu { display: flex; justify-content: flex-end; gap: 8px; padding: 0; ma
   dialog { padding: 23px; }
   body.stage-view #chart-sheet { margin: 0; border: 0; min-height: 100%; }
 }
-@media (max-width: 360px) { #empty-state { padding: 24px 20px; grid-template-columns: minmax(0,1fr) 88px; } .welcome-heading h2 { font-size: 32px; } }
+@media (max-width: 360px) { #empty-state { padding: 24px 20px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
 @media print { #library-drawer, #topbar, #bottombar, #toast, #scrim { display: none !important; } body, #viewport { overflow: visible; height: auto; } #workspace { margin: 0; height: auto; } #chart-sheet { margin: 0; padding: 0; border: 0; box-shadow: none; color: #000; background: #fff; width: 100%; } }
 
 /* Library navigation and folder browser. One scroll region, explicit locations. */
 .app-name { font-size: 21px; font-weight: 600; line-height: 1.2; }
-.app-name small { display: block; font: 13px var(--serif); color: var(--muted); margin-top: 5px; }
 .brand-header { display: flex; align-items: center; justify-content: space-between; min-height: 78px; padding: 14px 20px; }
 .brand-header .app-name { margin-right: auto; }
 #about-dialog { font-size: 14px; line-height: 1.6; }
@@ -331,8 +319,7 @@ dialog select { min-height: 48px; padding-right: 25px; }
   #library-drawer { width: min(420px,100vw); }
   .brand-header { min-height: 67px; padding: 10px 18px; }
   #empty-state { padding: 30px 26px; }
-  .welcome-heading h2 { font-size: 43px; }
-  .welcome-description { margin: 16px 0 28px; font-size: 14px; }
+  .welcome-description { margin: 0 0 24px; font-size: 14px; }
   .has-song #workspace { background: var(--paper); padding-top: 0; }
   .has-song #topbar, .has-song.stage-view #topbar { position: absolute; inset: var(--safe-top) 0 auto; z-index: 10; height: 44px; min-height: 44px; padding: 0 2px; border: 0; background: transparent; pointer-events: none; justify-content: space-between; }
   .has-song #topbar .topbar-title, .has-song #btn-theme, .has-song #btn-focus { display: none; }

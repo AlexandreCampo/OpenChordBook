@@ -11,7 +11,7 @@ import java.util.Set;
 /** No Android dependencies, so the same policy can be tested on the JVM. */
 final class NetworkPolicy {
     // Same origin preserves IndexedDB; a versioned path bypasses older service workers.
-    static final String ASSET_PATH = "/assets/v18/web/";
+    static final String ASSET_PATH = "/assets/v19/web/";
     static final String ASSET_HOST = "appassets.androidplatform.net";
     private static final Set<String> DOWNLOAD_HOSTS = new HashSet<>(Arrays.asList(
             "forums.irealpro.com", "www.martingioani.com", "dl.dropboxusercontent.com"));

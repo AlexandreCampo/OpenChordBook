@@ -1,9 +1,9 @@
 {
   "name": "openchordbook",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "private": true,
   "type": "module",
-  "description": "Development tools for OpenChordBook, an open chord book",
+  "description": "Development tools for OpenChordBook",
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",

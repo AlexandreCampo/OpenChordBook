@@ -1,0 +1,1 @@
+Simpler app headers and welcome screen. Updated screenshots show chord entry and the chart preview.
