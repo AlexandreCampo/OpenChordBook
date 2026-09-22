@@ -29,10 +29,17 @@ the F-Droid recipe's version/build block. Keep APK version codes increasing.
 ## Source and APK artifacts
 
 After review, commit the intended source and create the matching annotated
-release tag (for this candidate, `v1.18`). Do not move an already published tag.
-Build the release from that exact revision, using your existing private APK key.
+release tag. Do not move an already published tag.
+Build the release from that exact revision with OpenJDK 21, using your existing
+private APK key. Follow [Android signing instructions](../android/README.md#release-signing).
 
-From a clean checkout of the release tag:
+From a clean checkout of the release tag, run `scripts/build-release.sh` with
+`JAVA_HOME` set to OpenJDK 21. The helper checks the compiler, builds an unsigned
+APK and runs lint. For an older tag without the helper, run the helper from the
+current checkout with the tag checkout's path as its argument. Sign the result
+with the existing key and build-tools 36.0.0 apksigner's default alignment options.
+
+Export the corresponding source from that same clean tag checkout:
 
 ```sh
 python3 scripts/export-source.py dist/openchordbook-1.18-source.tar.gz
@@ -50,8 +57,15 @@ Publish a GitHub release for the matching tag, attaching:
 
 Keep corresponding source available alongside each distributed APK. Checksums
 help detect corrupted files; Android's signing certificate controls update
-continuity. A successful local build does not establish cross-machine or
-F-Droid reproducibility.
+continuity. Before each release, run the F-Droid recipe against the exact signed
+APK and require its signature-copy comparison to pass. The Java 21 replacement
+candidate for version 1.18 passes this check locally; see the
+[verification record](../packaging/fdroid/build-check.md). It is prepared in
+`dist/releases/v1.18-java21/`. Replacement of the public APK/checksum assets
+awaits approval. Then rerun the existing F-Droid pipeline with its current
+recipe; no recipe commit is needed. The source archive, tag,
+version and signing key are unchanged; no new release tag is needed for this
+compiler-only rebuild.
 
 ## Web release
 

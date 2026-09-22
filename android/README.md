@@ -6,7 +6,7 @@ Charts are imported or downloaded by the user; none are packaged in the APK.
 
 ## Requirements
 
-- A Gradle-compatible JDK; JDK 17 or 21 can run this toolchain.
+- OpenJDK 21 for release builds, matching CI and F-Droid. Set `JAVA_HOME` to it.
 - Android SDK platform 36 and build-tools 36.0.0.
 - `ANDROID_HOME` set to your SDK, or an ignored `android/local.properties`
   containing `sdk.dir=/absolute/path/to/your/android-sdk`.
@@ -17,15 +17,18 @@ AndroidX Core 1.17.0 and WebKit 1.14.0. No Android Studio or npm install is need
 
 ## Build
 
-From `android/`:
+From the repository root:
 
 ```sh
-./gradlew --no-daemon assembleRelease -PunsignedRelease=true lintRelease
+export JAVA_HOME=/path/to/openjdk-21
+./scripts/build-release.sh
 ```
 
-Output: `app/build/outputs/apk/release/app-release-unsigned.apk`.
+The helper checks the compiler version, builds an unsigned release and runs lint.
+It also accepts a source checkout path to rebuild an older tag.
+Output: `android/app/build/outputs/apk/release/app-release-unsigned.apk`.
 An unsigned APK is suitable for source-build verification, but cannot be installed
-as a normal release. For a quick isolated development install:
+as a normal release. For a quick isolated development install, from `android/`:
 
 ```sh
 ./gradlew assembleDebug
@@ -59,6 +62,17 @@ the build remains unsigned. `-PunsignedRelease=true` explicitly bypasses signing
 Never commit that properties file or key; the public repository contains neither.
 If updating an existing installation, use its existing key rather than generating
 another one. Different keys require uninstalling, which loses the local library.
+
+For releases distributed through the reproducible F-Droid recipe, use JDK 21,
+build with `-PunsignedRelease=true`, then sign the unsigned APK with
+`$ANDROID_HOME/build-tools/36.0.0/apksigner`. Keep its default alignment options:
+the recipe reproduces that padding. Verify the exact signed APK against a clean
+F-Droid rebuild before publishing each release. See the build verification record
+linked from the submission guide.
+
+Keep an encrypted backup of the existing keystore on separate storage, and
+retain its alias and passwords. The public certificate fingerprint is safe to
+include in metadata; the private keystore and passwords are not needed by F-Droid.
 
 ## Install a signed release
 

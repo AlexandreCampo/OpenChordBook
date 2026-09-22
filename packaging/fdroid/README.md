@@ -28,17 +28,25 @@ before sending a contribution. Acceptance is a maintainer decision.
 
 ## Signing choice
 
-The recipe currently uses **standard F-Droid signing**: F-Droid builds from
-source and signs its APK. That certificate normally differs from direct
-upstream releases. Android cannot update an installation signed by another
-key; uninstalling deletes its local library. Test different distributions on
-separate devices/profiles until update compatibility is established.
+The revised recipe uses **developer-key reproducible builds**. `Binaries`
+points to the published GitHub APK and `AllowedAPKSigningKeys` pins its public
+certificate fingerprint. F-Droid independently rebuilds the app and distributes
+the developer-signed APK only when verification succeeds. This allows GitHub
+and F-Droid installations to update each other with the same signing identity.
 
-To retain the developer key, first publish an upstream signed APK and establish
-[reproducible builds](https://f-droid.org/docs/Reproducible_Builds/) in F-Droid's
-environment, then configure `Binaries` and `AllowedAPKSigningKeys`. Neither is
-claimed or enabled by the current recipe. Make this decision before first
-publication; switching signing keys later is disruptive.
+The Java 21 replacement candidate for 1.18 reproduces byte-for-byte in the
+official container with the standard `reproducible-apk-tools@v0.3.0` helper.
+See [build-check.md](build-check.md). After approval, replace the existing GitHub
+APK/checksum assets, then rerun the existing
+[merge request](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/49670)
+pipeline with the reviewer’s recipe unchanged. The local recipe only omits an
+unused Java 25 installation and updates explanatory notes. The tag, source, version and signing key stay unchanged.
+The files are prepared in `dist/releases/v1.18-java21/`; nothing has been
+published by this preparation.
+
+Keep the existing private APK key backed up on separate encrypted storage, and
+retain its alias and passwords. F-Droid needs only the public APK and certificate
+fingerprint, never the private key or passwords.
 
 ## Submit the recipe
 
