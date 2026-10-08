@@ -2,11 +2,13 @@
 
 Application ID: `io.github.openchordbook` · License: `GPL-3.0-or-later`
 
-[metadata/io.github.openchordbook.yml](metadata/io.github.openchordbook.yml) is the
-submission recipe for https://github.com/AlexandreCampo/OpenChordBook,
-`v1.18` / versionCode 19. The tag is public and the recipe is pinned to its full
-commit hash. It passes the official container build; see [build-check.md](build-check.md).
-F-Droid pipeline execution, review and publication are separate steps.
+[metadata/io.github.openchordbook.yml](metadata/io.github.openchordbook.yml) is a
+copy of the recipe merged into
+[fdroiddata](https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/io.github.openchordbook.yml)
+on 2026-10-08 by [MR 49670](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/49670),
+for `v1.18` / versionCode 19. The fdroiddata copy is authoritative. The build
+passes the official container check; see [build-check.md](build-check.md).
+F-Droid's build server publishes the app after verifying it.
 
 ## Eligibility and review points
 
@@ -34,15 +36,14 @@ certificate fingerprint. F-Droid independently rebuilds the app and distributes
 the developer-signed APK only when verification succeeds. This allows GitHub
 and F-Droid installations to update each other with the same signing identity.
 
-The Java 21 replacement candidate for 1.18 reproduces byte-for-byte in the
-official container with the standard `reproducible-apk-tools@v0.3.0` helper.
-See [build-check.md](build-check.md). After approval, replace the existing GitHub
-APK/checksum assets, then rerun the existing
-[merge request](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/49670)
-pipeline with the reviewer’s recipe unchanged. The local recipe only omits an
-unused Java 25 installation and updates explanatory notes. The tag, source, version and signing key stay unchanged.
-The files are prepared in `dist/releases/v1.18-java21/`; nothing has been
-published by this preparation.
+The published 1.18 APK is built with Java 21, F-Droid's default compiler, and
+reproduces byte-for-byte with the standard `reproducible-apk-tools@v0.3.0`
+helper. See [build-check.md](build-check.md).
+
+`AutoUpdateMode` follows new `vMAJOR.MINOR` tags: F-Droid adds each new version
+by itself, and publishes it only if the GitHub APK reproduces and is signed with
+the pinned key. Never change this app's signing key. F-Droid would reject the
+release, and installed copies could not update.
 
 Keep the existing private APK key backed up on separate encrypted storage, and
 retain its alias and passwords. F-Droid needs only the public APK and certificate

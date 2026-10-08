@@ -20,6 +20,9 @@ Builds:
     versionCode: 19
     commit: cd3fcf40e7c8476d81fc350c893c11f2e7092ded
     subdir: android/app
+    sudo:
+      - apt-get update
+      - apt-get install -y openjdk-25-jdk-headless
     gradle:
       - yes
     srclibs:
@@ -32,20 +35,6 @@ Builds:
         --replace unaligned.apk $$OUT$$
 
 AllowedAPKSigningKeys: 5a0b2be71342089e1eddef9d478914dbe3115d3a8390791a11daec89f730aaea
-
-MaintainerNotes: |-
-  All UI assets are local. Native additions include catalog-bound downloads,
-  file selection, immersive reading and Android Back handling; the offline
-  editor and library work without any network service or iReal Pro installation.
-  No tunes are bundled. Optional external repertoire downloads are disclosed
-  under NonFreeNet; please review the catalog for any additional labels.
-  Third-party notices and font provenance are in THIRD_PARTY_NOTICES.md.
-  Development includes AI-assisted code; see CONTRIBUTING.md.
-  AGP 9.4.1 / Gradle 9.7.1 / JDK 21 / Java 17 bytecode / SDK 36.
-  The standard F-Droid alignment helper reproduces apksigner 36 ZIP padding.
-  No application code or assets are changed by the postbuild step.
-  Release builds use the same JDK 21 as F-Droid and upstream CI.
-  Only the public certificate fingerprint is included; no private key is needed.
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags ^v[0-9]+\.[0-9]+$

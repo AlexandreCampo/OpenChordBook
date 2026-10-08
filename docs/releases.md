@@ -58,14 +58,13 @@ Publish a GitHub release for the matching tag, attaching:
 Keep corresponding source available alongside each distributed APK. Checksums
 help detect corrupted files; Android's signing certificate controls update
 continuity. Before each release, run the F-Droid recipe against the exact signed
-APK and require its signature-copy comparison to pass. The Java 21 replacement
-candidate for version 1.18 passes this check locally; see the
-[verification record](../packaging/fdroid/build-check.md). It is prepared in
-`dist/releases/v1.18-java21/`. Replacement of the public APK/checksum assets
-awaits approval. Then rerun the existing F-Droid pipeline with its current
-recipe; no recipe commit is needed. The source archive, tag,
-version and signing key are unchanged; no new release tag is needed for this
-compiler-only rebuild.
+APK and require its signature-copy comparison to pass. The published 1.18 APK
+was rebuilt with Java 21 and passes this check locally and in F-Droid CI; see
+the [verification record](../packaging/fdroid/build-check.md).
+
+F-Droid picks up each new `vMAJOR.MINOR` tag automatically. It publishes the
+release only if the GitHub APK is built with Java 21, reproduces, and is signed
+with the same key as earlier releases.
 
 ## Web release
 

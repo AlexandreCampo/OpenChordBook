@@ -53,7 +53,8 @@ for subdirectory hosting, PWA installation and offline behavior.
 Android 7.0 or newer is required. Signed APKs belong on the project's
 [Releases page](https://github.com/AlexandreCampo/OpenChordBook/releases) when available.
 For building, signing and installing from source, see [android/README.md](android/README.md).
-F-Droid packaging is prepared; inclusion is not yet approved.
+F-Droid accepted OpenChordBook on 2026-10-08; it appears in the F-Droid client
+once F-Droid's build server publishes it.
 
 ## Documentation
 

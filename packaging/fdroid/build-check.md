@@ -68,22 +68,19 @@ The full suite was rerun after resuming the laptop:
 - Android runtime checks used an API 36 emulator. Other Android versions and
   physical phones were not tested during this verification.
 
-## Existing merge request
-
-The reviewer’s recipe in MR 49670 at commit
-`8b5c88b25c8b55707c0610ea89aa4b1d0728d815` can remain unchanged. It uses the
-same release source, Gradle properties, helper version and alignment commands.
-The failed job selected Java 21; its remaining Java 25 installation does not
-select that compiler. The local recipe omits that unused installation and has
-updated explanatory notes. These cleanups do not require another MR commit.
-
 ## Publication status
 
-The candidate and logs are in the ignored `dist/releases/v1.18-java21/` directory.
-The previously published APK is preserved locally in `dist/releases/v1.18/`.
+The candidate replaced the v1.18 GitHub APK and checksum assets on 2026-09-22.
+The APK downloaded from the public release URL has the candidate's SHA-256.
+The candidate and logs are in the ignored `dist/releases/v1.18-java21/` directory;
+the previously published Java 25 APK is preserved in `dist/releases/v1.18/`.
 The tag, application ID, version code and signing key are unchanged.
 
-Replacing the GitHub APK/checksum assets requires approval. Afterwards, rerun
-the existing F-Droid pipeline with its current recipe. The candidate has not
-yet been verified by downloading it from the public release URL. Maintainer
-review and publication remain separate steps.
+## Merge request
+
+MR 49670 pipeline
+[2872600415](https://gitlab.com/AlexandreCampo/fdroiddata/-/pipelines/2872600415)
+then passed. Its build job rebuilt the tag from source and verified it against
+the published APK. CI selects Java 21 before the recipe runs, so the recipe's
+Java 25 installation is unused but harmless. After a static review and an
+on-device test, the MR was merged on 2026-10-08.
